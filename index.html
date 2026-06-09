@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Me robaron el celular — Actúa ahora | Chile</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#D93025">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -26,6 +28,22 @@
     --text-muted: #6B7280;
     --bg: #F9FAFB;
     --white: #FFFFFF;
+    --card-bg: #FFFFFF;
+  }
+
+  /* ─── MODO OSCURO ─── */
+  body.dark {
+    --border: #374151;
+    --text: #F9FAFB;
+    --text-muted: #9CA3AF;
+    --bg: #111827;
+    --white: #1F2937;
+    --card-bg: #1F2937;
+    --red-light: #3B0A0A;
+    --orange-light: #2D1500;
+    --blue-light: #0D1F45;
+    --green-light: #072316;
+    --teal-light: #062830;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +53,7 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.5;
+    transition: background 0.2s, color 0.2s;
   }
 
   /* ─── HEADER ─── */
@@ -55,6 +74,7 @@
     pointer-events: none;
   }
   .hero-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -73,6 +93,21 @@
   .hero-badge::before { content: '●'; color: #FF8A80; animation: blink 1.5s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
+  /* Botón modo oscuro */
+  .dark-toggle {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .dark-toggle:hover { background: rgba(255,255,255,0.25); }
+
   .hero h1 {
     font-size: clamp(1.75rem, 5vw, 2.6rem);
     font-weight: 800;
@@ -87,27 +122,145 @@
     margin-bottom: 1.25rem;
   }
 
-  /* ─── ALERTA AHORA ─── */
-  .now-strip {
+  /* ─── TEMPORIZADOR ─── */
+  .timer-strip {
     background: #111827;
     padding: 0.65rem 1.5rem;
   }
-  .now-strip-inner {
+  .timer-strip-inner {
     max-width: 680px;
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     font-size: 12px;
     color: #9CA3AF;
     font-family: 'DM Mono', monospace;
   }
+  .timer-left { display: flex; align-items: center; gap: 8px; }
   .now-dot { width:7px; height:7px; border-radius:50%; background:#EF4444; animation: blink 1s infinite; flex-shrink:0; }
+  .timer-display {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: #EF4444;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 6px;
+    padding: 2px 8px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── SELECTOR BANCO ─── */
+  .banco-selector {
+    background: var(--card-bg);
+    border: 2px solid var(--blue);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .banco-selector-header {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .banco-selector-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .banco-selector-label { font-size: 13px; font-weight: 700; }
+  .banco-selector-sub { font-size: 11.5px; color: var(--text-muted); }
+  .banco-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 1.25rem 1.25rem;
+  }
+  .banco-pill {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.6rem 0.85rem;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.12s;
+    -webkit-tap-highlight-color: transparent;
+    color: var(--text);
+  }
+  .banco-pill:hover { background: var(--blue-light); border-color: var(--blue); }
+  .banco-pill.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .banco-result {
+    display: none;
+    margin: 0 1.25rem 1.25rem;
+    background: var(--blue-light);
+    border: 1.5px solid var(--blue);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.12s;
+  }
+  .banco-result.visible { display: flex; }
+  .banco-result:active { transform: scale(0.98); }
+  .banco-result-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .banco-result-name { font-size: 14px; font-weight: 700; }
+  .banco-result-tip { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
 
   /* ─── MAIN ─── */
   main { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.5rem 7rem; }
 
-  /* ─── FASE CRÍTICA (pasos 1-3) ─── */
+  /* ─── PROGRESO ─── */
+  .progress-bar-wrap {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  /* ─── FASE CRÍTICA ─── */
   .fase-label {
     display: flex;
     align-items: center;
@@ -126,20 +279,19 @@
     border-radius: 4px;
   }
   .fase-tag.verde { background: var(--green); }
-  .fase-desc {
-    font-size: 12px;
-    color: var(--text-muted);
-  }
+  .fase-desc { font-size: 12px; color: var(--text-muted); }
 
   /* ─── PASO BLOQUE ─── */
   .paso {
-    background: var(--white);
+    background: var(--card-bg);
     border: 1.5px solid var(--border);
     border-radius: 16px;
     margin-bottom: 12px;
     overflow: hidden;
+    transition: border-color 0.2s;
   }
   .paso.urgente { border-color: #FCA5A5; }
+  .paso.done { border-color: var(--green) !important; }
 
   .paso-header {
     padding: 1.1rem 1.25rem 0.9rem;
@@ -161,7 +313,9 @@
     justify-content: center;
     flex-shrink: 0;
     margin-top: 2px;
+    transition: background 0.2s;
   }
+  .paso.done .paso-num { background: var(--green) !important; }
   .paso-num.azul { background: var(--blue); }
   .paso-num.verde { background: var(--green); }
   .paso-num.gris { background: #9CA3AF; }
@@ -176,23 +330,25 @@
     line-height: 1.3;
     margin-bottom: 2px;
   }
-  .paso-sub {
-    font-size: 12.5px;
-    color: var(--text-muted);
-    line-height: 1.4;
-  }
-  .paso-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 5px;
-  }
+  .paso-sub { font-size: 12.5px; color: var(--text-muted); line-height: 1.4; }
+  .paso-meta { display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
   .paso-tiempo {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--green);
     font-weight: 500;
   }
+  .paso-done-badge {
+    display: none;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    background: var(--green-light);
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+  .paso.done .paso-done-badge { display: inline-flex; align-items: center; gap: 4px; }
+
   .paso-chevron {
     font-size: 18px;
     color: var(--text-muted);
@@ -201,6 +357,27 @@
     margin-top: 8px;
   }
   .paso.open .paso-chevron { transform: rotate(180deg); }
+
+  /* Botón marcar hecho */
+  .btn-marcar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-marcar:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
+  .paso.done .btn-marcar { background: var(--green-light); border-color: var(--green); color: var(--green); }
 
   .paso-body {
     display: none;
@@ -224,8 +401,8 @@
     transition: background 0.12s, border-color 0.12s, transform 0.1s;
     -webkit-tap-highlight-color: transparent;
   }
-  .call-btn:active { transform: scale(0.98); background: #F3F4F6; }
-  .call-btn:hover { border-color: #D1D5DB; background: #F3F4F6; }
+  .call-btn:active { transform: scale(0.98); background: var(--bg); }
+  .call-btn:hover { border-color: #D1D5DB; background: var(--bg); filter: brightness(0.97); }
   .call-icon {
     width: 44px; height: 44px;
     border-radius: 50%;
@@ -277,7 +454,7 @@
     color: var(--text);
     transition: background 0.12s, border-color 0.12s;
   }
-  .web-btn:hover { background: #F3F4F6; border-color: #D1D5DB; }
+  .web-btn:hover { background: var(--bg); filter: brightness(0.97); border-color: #D1D5DB; }
   .web-btn-icon { font-size: 20px; }
   .web-btn-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
   .web-btn-detail { font-size: 11px; color: var(--text-muted); }
@@ -300,12 +477,14 @@
   }
   .aviso.rojo { background: var(--red-light); color: #7F1D1D; border: 1px solid #FCA5A5; }
   .aviso.naranja { background: var(--orange-light); color: #7C2D12; border: 1px solid #FED7AA; }
+  body.dark .aviso.rojo { color: #FCA5A5; }
+  body.dark .aviso.naranja { color: #FED7AA; }
   .aviso strong { font-weight: 600; }
   .aviso-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 
   /* ─── IMEI BOX ─── */
   .imei-box {
-    background: var(--white);
+    background: var(--card-bg);
     border: 1.5px solid var(--border);
     border-radius: 16px;
     padding: 1rem 1.25rem;
@@ -319,11 +498,7 @@
     align-items: center;
     gap: 6px;
   }
-  .imei-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
-  }
+  .imei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .imei-item {
     background: var(--bg);
     border-radius: 8px;
@@ -359,11 +534,7 @@
     margin: 0 auto 0.35rem;
     line-height: 1.5;
   }
-  .footer-update {
-    font-family: 'DM Mono', monospace;
-    font-size: 10.5px;
-    color: #9CA3AF;
-  }
+  .footer-update { font-family: 'DM Mono', monospace; font-size: 10.5px; color: #9CA3AF; }
 
   /* ─── FAB SOS ─── */
   .sos-fab {
@@ -395,7 +566,7 @@
     position: absolute;
     bottom: 60px;
     right: 0;
-    background: white;
+    background: var(--card-bg);
     border: 1.5px solid var(--border);
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.18);
@@ -421,7 +592,7 @@
     color: var(--text);
     font-size: 13.5px;
     font-weight: 600;
-    border-bottom: 1px solid #F3F4F6;
+    border-bottom: 1px solid var(--border);
     transition: background 0.1s;
   }
   .sos-link:last-child { border-bottom: none; }
@@ -433,10 +604,67 @@
     margin-left: auto;
   }
 
+  /* ─── DONACIONES ─── */
+  .donacion-section {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 12px;
+  }
+  .donacion-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .donacion-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+  .donacion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .donacion-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 0.85rem 0.75rem; text-decoration: none; color: var(--text);
+    transition: background 0.12s, border-color 0.12s, transform 0.1s;
+    text-align: center; -webkit-tap-highlight-color: transparent;
+  }
+  .donacion-btn:hover { background: var(--bg); border-color: #FCD34D; filter: brightness(0.97); }
+  .donacion-btn:active { transform: scale(0.97); }
+  .donacion-emoji { font-size: 22px; }
+  .donacion-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+  .donacion-monto { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 700; }
+  .donacion-via { font-size: 10px; color: var(--text-muted); font-family: 'DM Mono', monospace; margin-top: 1px; }
+
+  /* ─── FORMULARIO SUGERENCIAS ─── */
+  .sugerencias-section {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 12px;
+  }
+  .sugerencias-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .sugerencias-desc { font-size: 12.5px; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+  .sug-field {
+    width: 100%; background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 0.75rem 1rem; font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--text); margin-bottom: 8px; outline: none;
+    transition: border-color 0.15s; resize: vertical;
+  }
+  .sug-field:focus { border-color: var(--blue); }
+  .sug-submit {
+    width: 100%; background: var(--blue); color: white; border: none;
+    border-radius: 10px; padding: 0.75rem; font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    transition: background 0.15s, transform 0.1s; -webkit-tap-highlight-color: transparent;
+  }
+  .sug-submit:hover { background: #1446A8; }
+  .sug-submit:active { transform: scale(0.98); }
+  .sug-ok {
+    display: none; background: var(--green-light); border: 1px solid #86EFAC;
+    border-radius: 10px; padding: 0.75rem 1rem; font-size: 13px;
+    color: var(--green); font-weight: 600; text-align: center; margin-top: 8px;
+  }
+
   @media(max-width: 480px) {
     .web-grid { grid-template-columns: 1fr; }
     .imei-grid { grid-template-columns: 1fr 1fr; }
     .call-num { font-size: 14px; }
+    .banco-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -445,58 +673,87 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Emergencia · Chile</div>
+    <div class="hero-top">
+      <div class="hero-badge">Emergencia · Chile</div>
+      <button class="dark-toggle" id="darkToggle" title="Cambiar modo oscuro/claro" aria-label="Modo oscuro">🌙</button>
+    </div>
     <h1>¿Te robaron<br>el celular?</h1>
     <p>Mantén la calma. Sigue estos pasos en orden — te guiamos por todo.</p>
   </div>
 </div>
 
-<div class="now-strip">
-  <div class="now-strip-inner">
-    <div class="now-dot"></div>
-    Actúa rápido — cada minuto cuenta para evitar fraudes
+<div class="timer-strip">
+  <div class="timer-strip-inner">
+    <div class="timer-left">
+      <div class="now-dot"></div>
+      Actúa rápido — cada minuto cuenta
+    </div>
+    <div class="timer-display" id="timerDisplay">00:00</div>
   </div>
 </div>
 
 <main>
 
+  <!-- BARRA DE PROGRESO -->
+  <div class="progress-bar-wrap">
+    <span class="progress-label">Progreso</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 8 pasos</span>
+  </div>
+
+  <!-- SELECTOR DE BANCO -->
+  <div class="banco-selector">
+    <div class="banco-selector-header">
+      <div class="banco-selector-icon">🏦</div>
+      <div>
+        <div class="banco-selector-label">¿Cuál es tu banco? Tócalo para ver el número directo</div>
+        <div class="banco-selector-sub">Llama de inmediato para bloquear tus tarjetas</div>
+      </div>
+    </div>
+    <div class="banco-grid">
+      <button class="banco-pill" onclick="seleccionarBanco(this,'BancoEstado','800 80 20 20','tel:6008020200','CuentaRUT, débito, crédito · 24/7')">BancoEstado</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'Banco de Chile','600 637 37 37','tel:6006373737','Fonobank · 24/7')">Banco de Chile</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'Santander','600 320 3000','tel:6003203000','Emergencias bancarias · 24/7')">Santander</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'BCI','600 692 8000','tel:6006928000','Bci Directo · 24/7')">BCI</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'Scotiabank','600 600 1100','tel:6006001100','Bloqueo · 24/7')">Scotiabank</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'Falabella / CMR','600 390 6200','tel:6003906200','Bloqueo · 24/7')">Falabella / CMR</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'Itaú','600 686 0000','tel:6006860000','Bloqueo · 24/7')">Itaú</button>
+      <button class="banco-pill" onclick="seleccionarBanco(this,'Redbanc','800 206 206','tel:8002062060','Bloqueo débito · 24/7')">Redbanc</button>
+    </div>
+    <a href="#" class="banco-result" id="bancoResult">
+      <div class="call-icon naranja">🏦</div>
+      <div>
+        <div class="banco-result-name" id="bancoNombre"></div>
+        <div class="banco-result-tip" id="bancoTip"></div>
+      </div>
+      <div class="banco-result-num" id="bancoNum"></div>
+    </a>
+  </div>
+
   <!-- FASE CRÍTICA -->
   <div class="fase-label" style="margin-top:0.25rem">
     <span class="fase-tag">🔴 Haz esto ahora</span>
-    <span class="fase-desc">Primeros 10 minutos</span>
+    <span class="fase-desc">Primeros 5 minutos</span>
   </div>
 
-  <!-- IMEI -->
-  <div class="imei-box">
-    <div class="imei-title">📋 Necesitarás tu IMEI — ¿cómo encontrarlo sin el celular?</div>
-    <div class="imei-grid">
-      <div class="imei-item"><strong>Caja original</strong>Etiqueta en la parte trasera del empaque</div>
-      <div class="imei-item"><strong>Boleta o factura</strong>Documento de compra físico o digital</div>
-      <div class="imei-item"><strong>Email de compra</strong>Confirmación de tienda (Falabella, Entel, etc.)</div>
-      <div class="imei-item"><strong>Cuenta Google/Apple</strong>google.com/mydevices o appleid.apple.com → dispositivos</div>
-    </div>
-    <div style="margin-top:10px; font-size:12px; color:var(--text-muted); background:var(--bg); border-radius:8px; padding:8px 10px;">
-      💡 <strong>¿No tienes el IMEI?</strong> No te preocupes — con tu RUT y número de teléfono la operadora igual puede bloquear tu línea.
-    </div>
-  </div>
-
-  <!-- PASO 1: OPERADORA -->
+  <!-- PASO 1: CHIP -->
   <div class="paso urgente open" id="paso1">
     <div class="paso-header" onclick="togglePaso(this)">
       <div class="paso-num">1</div>
       <div class="paso-info">
-        <div class="paso-titulo">Bloquea tu línea e IMEI</div>
-        <div class="paso-sub">Llama a tu operadora desde cualquier teléfono</div>
+        <div class="paso-titulo">Bloquea tu chip SIM</div>
+        <div class="paso-sub">Llama a tu operadora desde otro teléfono</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~2 minutos</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
     </div>
     <div class="paso-body">
       <div class="aviso rojo">
-        <div class="aviso-icon">⚡</div>
-        <div><strong>Hazlo primero.</strong> Con tu IMEI bloqueado, el celular queda inutilizable en cualquier red de Chile. Llama gratis desde cualquier teléfono.</div>
+        <div class="aviso-icon">🚨</div>
+        <div>Con tu número activo pueden recibir <strong>códigos SMS de tu banco</strong>. Bloquea el chip primero que todo.</div>
       </div>
       <a href="tel:800367626" class="call-btn">
         <div class="call-icon">📞</div>
@@ -530,6 +787,7 @@
         </div>
         <div class="call-num">800 800 066</div>
       </a>
+      <button class="btn-marcar" onclick="marcarHecho('paso1', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -542,6 +800,7 @@
         <div class="paso-sub">Llama a tu banco inmediatamente · 24/7</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~3 minutos</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
@@ -553,76 +812,50 @@
       </div>
       <a href="tel:6008020200" class="call-btn">
         <div class="call-icon naranja">🏦</div>
-        <div class="call-info">
-          <div class="call-name">BancoEstado</div>
-          <div class="call-detail">CuentaRUT, débito, crédito · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">BancoEstado</div><div class="call-detail">CuentaRUT, débito, crédito · 24/7</div></div>
         <div class="call-num naranja">800 80 20 20</div>
       </a>
       <a href="tel:6006373737" class="call-btn">
         <div class="call-icon naranja">🏦</div>
-        <div class="call-info">
-          <div class="call-name">Banco de Chile</div>
-          <div class="call-detail">Fonobank · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Banco de Chile</div><div class="call-detail">Fonobank · 24/7</div></div>
         <div class="call-num naranja">600 637 37 37</div>
       </a>
       <a href="tel:6003203000" class="call-btn">
         <div class="call-icon naranja">🏦</div>
-        <div class="call-info">
-          <div class="call-name">Santander</div>
-          <div class="call-detail">Emergencias bancarias · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Santander</div><div class="call-detail">Emergencias bancarias · 24/7</div></div>
         <div class="call-num naranja">600 320 3000</div>
       </a>
       <a href="tel:6006928000" class="call-btn">
         <div class="call-icon naranja">🏦</div>
-        <div class="call-info">
-          <div class="call-name">BCI</div>
-          <div class="call-detail">Bci Directo · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">BCI</div><div class="call-detail">Bci Directo · 24/7</div></div>
         <div class="call-num naranja">600 692 8000</div>
       </a>
       <a href="tel:6006001100" class="call-btn">
         <div class="call-icon naranja">🏦</div>
-        <div class="call-info">
-          <div class="call-name">Scotiabank</div>
-          <div class="call-detail">Bloqueo · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Scotiabank</div><div class="call-detail">Bloqueo · 24/7</div></div>
         <div class="call-num naranja">600 600 1100</div>
       </a>
       <a href="tel:6003906200" class="call-btn">
         <div class="call-icon naranja">🏦</div>
-        <div class="call-info">
-          <div class="call-name">Falabella / CMR</div>
-          <div class="call-detail">Bloqueo · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Falabella / CMR</div><div class="call-detail">Bloqueo · 24/7</div></div>
         <div class="call-num naranja">600 390 6200</div>
       </a>
       <a href="tel:8002062060" class="call-btn">
         <div class="call-icon naranja">💳</div>
-        <div class="call-info">
-          <div class="call-name">Redbanc</div>
-          <div class="call-detail">Bloqueo tarjetas débito · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Redbanc</div><div class="call-detail">Bloqueo tarjetas débito · 24/7</div></div>
         <div class="call-num naranja">800 206 206</div>
       </a>
       <a href="tel:22661271" class="call-btn">
         <div class="call-icon naranja">💳</div>
-        <div class="call-info">
-          <div class="call-name">Transbank</div>
-          <div class="call-detail">Bloqueo tarjetas crédito · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Transbank</div><div class="call-detail">Bloqueo tarjetas crédito · 24/7</div></div>
         <div class="call-num naranja">2 2661 27 11</div>
       </a>
       <a href="https://www.cmfchile.cl/educa/621/w3-article-27679.html" target="_blank" class="call-btn">
         <div class="call-icon naranja">📋</div>
-        <div class="call-info">
-          <div class="call-name">Lista completa de bancos</div>
-          <div class="call-detail">CMF Chile — todos los teléfonos</div>
-        </div>
+        <div class="call-info"><div class="call-name">Lista completa de bancos</div><div class="call-detail">CMF Chile — todos los teléfonos</div></div>
         <div class="call-num naranja">→</div>
       </a>
+      <button class="btn-marcar" onclick="marcarHecho('paso2', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -635,6 +868,7 @@
         <div class="paso-sub">Online 24/7 o llamando al 133</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~5 minutos online</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
@@ -646,18 +880,12 @@
       </div>
       <a href="tel:133" class="call-btn">
         <div class="call-icon azul">🚓</div>
-        <div class="call-info">
-          <div class="call-name">Carabineros</div>
-          <div class="call-detail">Emergencias · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Carabineros</div><div class="call-detail">Emergencias · 24/7</div></div>
         <div class="call-num azul">133</div>
       </a>
       <a href="tel:134" class="call-btn">
         <div class="call-icon azul">🕵️</div>
-        <div class="call-info">
-          <div class="call-name">PDI</div>
-          <div class="call-detail">Policía de Investigaciones · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">PDI</div><div class="call-detail">Policía de Investigaciones · 24/7</div></div>
         <div class="call-num azul">134</div>
       </a>
       <div class="web-grid">
@@ -674,6 +902,7 @@
           <div class="web-btn-action">pdi.cl →</div>
         </a>
       </div>
+      <button class="btn-marcar" onclick="marcarHecho('paso3', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -693,6 +922,7 @@
         <div class="paso-sub">Desde otro celular o computador</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~2 minutos</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
@@ -724,6 +954,7 @@
           <div class="web-btn-action verde">preyproject.com →</div>
         </a>
       </div>
+      <button class="btn-marcar" onclick="marcarHecho('paso4', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -736,6 +967,7 @@
         <div class="paso-sub">Mach, Tenpo, Mercado Pago y otras</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~5 minutos</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
@@ -743,18 +975,12 @@
     <div class="paso-body">
       <a href="tel:6006006666" class="call-btn">
         <div class="call-icon teal">💜</div>
-        <div class="call-info">
-          <div class="call-name">Mach</div>
-          <div class="call-detail">Llamar para bloquear · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Mach</div><div class="call-detail">Llamar para bloquear · 24/7</div></div>
         <div class="call-num teal">600 600 6666</div>
       </a>
       <a href="tel:6008200000" class="call-btn">
         <div class="call-icon teal">🟢</div>
-        <div class="call-info">
-          <div class="call-name">Tenpo</div>
-          <div class="call-detail">Llamar para bloquear · 24/7</div>
-        </div>
+        <div class="call-info"><div class="call-name">Tenpo</div><div class="call-detail">Llamar para bloquear · 24/7</div></div>
         <div class="call-num teal">600 820 0000</div>
       </a>
       <div class="web-grid">
@@ -783,6 +1009,7 @@
           <div class="web-btn-action teal">superdigital.cl →</div>
         </a>
       </div>
+      <button class="btn-marcar" onclick="marcarHecho('paso5', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -795,6 +1022,7 @@
         <div class="paso-sub">Cambia contraseñas y cierra sesiones activas</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~10 minutos</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
@@ -806,54 +1034,47 @@
       </div>
       <div class="web-grid">
         <a href="https://myaccount.google.com/security" target="_blank" class="web-btn">
-          <div class="web-btn-icon">✉️</div>
-          <div class="web-btn-name">Gmail / Google</div>
+          <div class="web-btn-icon">✉️</div><div class="web-btn-name">Gmail / Google</div>
           <div class="web-btn-detail">Contraseña y sesiones activas</div>
           <div class="web-btn-action morado">myaccount.google.com →</div>
         </a>
         <a href="https://account.microsoft.com/security" target="_blank" class="web-btn">
-          <div class="web-btn-icon">📧</div>
-          <div class="web-btn-name">Outlook</div>
+          <div class="web-btn-icon">📧</div><div class="web-btn-name">Outlook</div>
           <div class="web-btn-detail">Seguridad de cuenta Microsoft</div>
           <div class="web-btn-action morado">account.microsoft.com →</div>
         </a>
         <a href="https://appleid.apple.com" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🍎</div>
-          <div class="web-btn-name">Apple ID</div>
+          <div class="web-btn-icon">🍎</div><div class="web-btn-name">Apple ID</div>
           <div class="web-btn-detail">Cambiar clave y dispositivos</div>
           <div class="web-btn-action morado">appleid.apple.com →</div>
         </a>
         <a href="https://www.facebook.com/settings?tab=security" target="_blank" class="web-btn">
-          <div class="web-btn-icon">👥</div>
-          <div class="web-btn-name">Facebook</div>
+          <div class="web-btn-icon">👥</div><div class="web-btn-name">Facebook</div>
           <div class="web-btn-detail">Seguridad y sesiones activas</div>
           <div class="web-btn-action morado">facebook.com →</div>
         </a>
         <a href="https://www.instagram.com/accounts/password/change/" target="_blank" class="web-btn">
-          <div class="web-btn-icon">📷</div>
-          <div class="web-btn-name">Instagram</div>
+          <div class="web-btn-icon">📷</div><div class="web-btn-name">Instagram</div>
           <div class="web-btn-detail">Cambiar contraseña</div>
           <div class="web-btn-action morado">instagram.com →</div>
         </a>
         <a href="https://twitter.com/settings/password" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🐦</div>
-          <div class="web-btn-name">X (Twitter)</div>
+          <div class="web-btn-icon">🐦</div><div class="web-btn-name">X (Twitter)</div>
           <div class="web-btn-detail">Cambiar contraseña</div>
           <div class="web-btn-action morado">twitter.com →</div>
         </a>
         <a href="https://faq.whatsapp.com/1142481796104709" target="_blank" class="web-btn">
-          <div class="web-btn-icon">💬</div>
-          <div class="web-btn-name">WhatsApp</div>
+          <div class="web-btn-icon">💬</div><div class="web-btn-name">WhatsApp</div>
           <div class="web-btn-detail">Desactivar cuenta por email</div>
           <div class="web-btn-action morado">faq.whatsapp.com →</div>
         </a>
         <a href="https://www.tiktok.com/setting" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🎵</div>
-          <div class="web-btn-name">TikTok</div>
+          <div class="web-btn-icon">🎵</div><div class="web-btn-name">TikTok</div>
           <div class="web-btn-detail">Contraseña y sesiones</div>
           <div class="web-btn-action morado">tiktok.com →</div>
         </a>
       </div>
+      <button class="btn-marcar" onclick="marcarHecho('paso6', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -866,6 +1087,7 @@
         <div class="paso-sub">Uber, DiDi, Rappi, PedidosYa y más</div>
         <div class="paso-meta">
           <span class="paso-tiempo">⏱ ~5 minutos</span>
+          <span class="paso-done-badge">✓ Hecho</span>
         </div>
       </div>
       <div class="paso-chevron">⌄</div>
@@ -873,36 +1095,32 @@
     <div class="paso-body">
       <div class="web-grid">
         <a href="https://help.uber.com" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🚗</div>
-          <div class="web-btn-name">Uber</div>
+          <div class="web-btn-icon">🚗</div><div class="web-btn-name">Uber</div>
           <div class="web-btn-detail">Reportar robo y cerrar sesión</div>
           <div class="web-btn-action">help.uber.com →</div>
         </a>
         <a href="https://web.didiglobal.com/cl/passenger-safety/" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🟡</div>
-          <div class="web-btn-name">DiDi</div>
+          <div class="web-btn-icon">🟡</div><div class="web-btn-name">DiDi</div>
           <div class="web-btn-detail">Cerrar sesión remotamente</div>
           <div class="web-btn-action">didiglobal.com →</div>
         </a>
         <a href="https://help.cabify.com" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🟣</div>
-          <div class="web-btn-name">Cabify</div>
+          <div class="web-btn-icon">🟣</div><div class="web-btn-name">Cabify</div>
           <div class="web-btn-detail">Soporte para bloquear cuenta</div>
           <div class="web-btn-action">help.cabify.com →</div>
         </a>
         <a href="https://www.pedidosya.cl/ayuda" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🛵</div>
-          <div class="web-btn-name">PedidosYa</div>
+          <div class="web-btn-icon">🛵</div><div class="web-btn-name">PedidosYa</div>
           <div class="web-btn-detail">Bloquear cuenta</div>
           <div class="web-btn-action">pedidosya.cl →</div>
         </a>
         <a href="https://www.rappi.cl/ayuda" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🟠</div>
-          <div class="web-btn-name">Rappi</div>
+          <div class="web-btn-icon">🟠</div><div class="web-btn-name">Rappi</div>
           <div class="web-btn-detail">Cerrar sesión y bloquear pagos</div>
           <div class="web-btn-action">rappi.cl →</div>
         </a>
       </div>
+      <button class="btn-marcar" onclick="marcarHecho('paso7', this)">☐ Marcar como hecho</button>
     </div>
   </div>
 
@@ -913,37 +1131,85 @@
       <div class="paso-info">
         <div class="paso-titulo">Recursos adicionales</div>
         <div class="paso-sub">SERNAC, CMF, Registro IMEI</div>
+        <div class="paso-meta">
+          <span class="paso-done-badge">✓ Hecho</span>
+        </div>
       </div>
       <div class="paso-chevron">⌄</div>
     </div>
     <div class="paso-body">
       <div class="web-grid">
         <a href="https://www.sernac.cl" target="_blank" class="web-btn">
-          <div class="web-btn-icon">⚖️</div>
-          <div class="web-btn-name">SERNAC</div>
+          <div class="web-btn-icon">⚖️</div><div class="web-btn-name">SERNAC</div>
           <div class="web-btn-detail">Reclamos ante operadoras o bancos</div>
           <div class="web-btn-action">sernac.cl →</div>
         </a>
         <a href="https://registrodeimei.cl" target="_blank" class="web-btn">
-          <div class="web-btn-icon">📋</div>
-          <div class="web-btn-name">Registro IMEI</div>
+          <div class="web-btn-icon">📋</div><div class="web-btn-name">Registro IMEI</div>
           <div class="web-btn-detail">Verificar estado del equipo</div>
           <div class="web-btn-action">registrodeimei.cl →</div>
         </a>
         <a href="https://www.cmfchile.cl" target="_blank" class="web-btn">
-          <div class="web-btn-icon">🏛️</div>
-          <div class="web-btn-name">CMF Chile</div>
+          <div class="web-btn-icon">🏛️</div><div class="web-btn-name">CMF Chile</div>
           <div class="web-btn-detail">Regulador financiero — reclamos</div>
           <div class="web-btn-action">cmfchile.cl →</div>
         </a>
         <a href="https://www.subtel.gob.cl" target="_blank" class="web-btn">
-          <div class="web-btn-icon">📡</div>
-          <div class="web-btn-name">SUBTEL</div>
+          <div class="web-btn-icon">📡</div><div class="web-btn-name">SUBTEL</div>
           <div class="web-btn-detail">Regulador telecomunicaciones</div>
           <div class="web-btn-action">subtel.gob.cl →</div>
         </a>
       </div>
+      <button class="btn-marcar" onclick="marcarHecho('paso8', this)">☐ Marcar como hecho</button>
     </div>
+  </div>
+
+  <!-- DIVISOR -->
+  <hr class="fase-divider">
+
+  <!-- DONACIONES -->
+  <div class="donacion-section">
+    <div class="donacion-title">💛 Apoya este sitio</div>
+    <p class="donacion-desc">Esta página es gratuita y sin publicidad. Si te fue útil, puedes contribuir con lo que quieras — cualquier aporte ayuda a mantenerla activa.</p>
+    <div class="donacion-grid">
+      <a href="https://mpago.li/1uWDgRX" target="_blank" class="donacion-btn">
+        <div class="donacion-emoji">☕</div>
+        <div class="donacion-label">Café</div>
+        <div class="donacion-monto">$1.000</div>
+        <div class="donacion-via">Mercado Pago</div>
+      </a>
+      <a href="https://mpago.li/1XLfJSj" target="_blank" class="donacion-btn">
+        <div class="donacion-emoji">👍</div>
+        <div class="donacion-label">Apoyo</div>
+        <div class="donacion-monto">$2.500</div>
+        <div class="donacion-via">Mercado Pago</div>
+      </a>
+      <a href="https://mpago.li/1ok8dw5" target="_blank" class="donacion-btn">
+        <div class="donacion-emoji">⭐</div>
+        <div class="donacion-label">Gracias</div>
+        <div class="donacion-monto">$5.000</div>
+        <div class="donacion-via">Mercado Pago</div>
+      </a>
+      <a href="https://mpago.li/1RhQ4tB" target="_blank" class="donacion-btn">
+        <div class="donacion-emoji">💎</div>
+        <div class="donacion-label">Héroe</div>
+        <div class="donacion-monto">$10.000</div>
+        <div class="donacion-via">Mercado Pago</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- SUGERENCIAS -->
+  <div class="sugerencias-section">
+    <div class="sugerencias-title">📬 Sugerencias o correcciones</div>
+    <p class="sugerencias-desc">¿Falta algún banco o número? ¿Algo está desactualizado? Escríbenos — leemos todos los mensajes.</p>
+    <form id="sugForm" action="https://formspree.io/f/maqzjgov" method="POST">
+      <input type="hidden" name="_replyto" value="">
+      <input class="sug-field" type="text" name="nombre" placeholder="Tu nombre (opcional)">
+      <textarea class="sug-field" name="mensaje" rows="3" placeholder="Tu sugerencia o corrección..." required></textarea>
+      <button type="submit" class="sug-submit">Enviar sugerencia →</button>
+    </form>
+    <div class="sug-ok" id="sugOk">✅ ¡Mensaje enviado! Gracias por tu aporte.</div>
   </div>
 
 </main>
@@ -970,9 +1236,83 @@
 </div>
 
 <script>
+  // ─── MODO OSCURO ───
+  const darkToggle = document.getElementById('darkToggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const saved = localStorage.getItem('darkMode');
+  if (saved === 'true' || (saved === null && prefersDark)) {
+    document.body.classList.add('dark');
+    darkToggle.textContent = '☀️';
+  }
+  darkToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    darkToggle.textContent = isDark ? '☀️' : '🌙';
+    localStorage.setItem('darkMode', isDark);
+  });
+
+  // ─── TEMPORIZADOR ───
+  const timerDisplay = document.getElementById('timerDisplay');
+  let seconds = 0;
+  setInterval(() => {
+    seconds++;
+    const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+    const s = String(seconds % 60).padStart(2, '0');
+    timerDisplay.textContent = m + ':' + s;
+    if (seconds >= 300) timerDisplay.style.color = '#F59E0B'; // naranja a los 5 min
+    if (seconds >= 600) timerDisplay.style.color = '#EF4444'; // rojo a los 10 min
+  }, 1000);
+
+  // ─── SELECTOR BANCO ───
+  function seleccionarBanco(btn, nombre, numero, tel, detalle) {
+    document.querySelectorAll('.banco-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const result = document.getElementById('bancoResult');
+    document.getElementById('bancoNombre').textContent = nombre;
+    document.getElementById('bancoNum').textContent = numero;
+    document.getElementById('bancoTip').textContent = detalle;
+    result.href = tel;
+    result.classList.add('visible');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ─── CHECKLIST + PROGRESO ───
+  const TOTAL_PASOS = 8;
+  const donePasos = new Set(JSON.parse(localStorage.getItem('pasosDone') || '[]'));
+
+  function actualizarProgreso() {
+    const count = donePasos.size;
+    const pct = (count / TOTAL_PASOS) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = count + ' / ' + TOTAL_PASOS + ' pasos';
+  }
+
+  function marcarHecho(pasoId, btn) {
+    const el = document.getElementById(pasoId);
+    const isDone = el.classList.toggle('done');
+    btn.textContent = isDone ? '✓ Marcado como hecho' : '☐ Marcar como hecho';
+    if (isDone) {
+      donePasos.add(pasoId);
+    } else {
+      donePasos.delete(pasoId);
+    }
+    localStorage.setItem('pasosDone', JSON.stringify([...donePasos]));
+    actualizarProgreso();
+  }
+
+  // Restaurar estado al cargar
+  donePasos.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('done');
+      const btn = el.querySelector('.btn-marcar');
+      if (btn) btn.textContent = '✓ Marcado como hecho';
+    }
+  });
+  actualizarProgreso();
+
+  // ─── ACCORDION ───
   function togglePaso(header) {
-    const paso = header.parentElement;
-    paso.classList.toggle('open');
+    header.parentElement.classList.toggle('open');
   }
 
   // Cerrar panel SOS al hacer clic afuera
@@ -982,6 +1322,39 @@
       document.getElementById('sosPanel').classList.remove('open');
     }
   });
+
+  // ─── FORMULARIO FORMSPREE ───
+  const sugForm = document.getElementById('sugForm');
+  if (sugForm) {
+    sugForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = sugForm.querySelector('.sug-submit');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      try {
+        const res = await fetch(sugForm.action, {
+          method: 'POST',
+          body: new FormData(sugForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          sugForm.style.display = 'none';
+          document.getElementById('sugOk').style.display = 'block';
+        } else {
+          btn.textContent = 'Error al enviar — intenta de nuevo';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Error al enviar — intenta de nuevo';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  // ─── PWA SERVICE WORKER ───
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
 </script>
 
 </body>
