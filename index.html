@@ -524,6 +524,15 @@
     margin-bottom: 1.25rem;
     overflow: hidden;
     transition: all 0.3s ease;
+    /* Evita que la topbar + barra de progreso (sticky) tapen el paso
+       cuando llegamos por ancla (#paso1, #paso2...) */
+    scroll-margin-top: var(--sticky-offset, 152px);
+  }
+
+  /* Si llegamos directo a un paso por enlace (#paso2, etc.), se resalta */
+  .paso:target {
+    border-color: var(--red);
+    box-shadow: var(--shadow-md);
   }
 
   .paso:hover {
@@ -627,6 +636,36 @@
 
   .paso-warning strong {
     color: var(--orange);
+  }
+
+  .btn-siguiente {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+    padding: 0.65rem 1.1rem;
+    background: var(--red);
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-siguiente:hover {
+    background: var(--red-dark, #b91c1c);
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 600px) {
+    .btn-siguiente {
+      display: flex;
+      margin-left: 0;
+      margin-top: 0.6rem;
+      justify-content: center;
+    }
   }
 
   .opciones-grid {
@@ -1060,6 +1099,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso1', this)">☐ Marcar como hecho</button>
+          <a href="#paso2" class="btn-siguiente" onclick="irAlPaso(event, 'paso2')">Siguiente paso: Bloquea tus tarjetas bancarias →</a>
         </div>
       </div>
     </div>
@@ -1122,6 +1162,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso2', this)">☐ Marcar como hecho</button>
+          <a href="#paso3" class="btn-siguiente" onclick="irAlPaso(event, 'paso3')">Siguiente paso: Haz la denuncia policial →</a>
         </div>
       </div>
     </div>
@@ -1172,6 +1213,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso3', this)">☐ Marcar como hecho</button>
+          <a href="#paso4" class="btn-siguiente" onclick="irAlPaso(event, 'paso4')">Siguiente paso: Rastrea o borra el dispositivo →</a>
         </div>
       </div>
     </div>
@@ -1229,6 +1271,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso4', this)">☐ Marcar como hecho</button>
+          <a href="#paso5" class="btn-siguiente" onclick="irAlPaso(event, 'paso5')">Siguiente paso: Bloquea billeteras digitales →</a>
         </div>
       </div>
     </div>
@@ -1275,6 +1318,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso5', this)">☐ Marcar como hecho</button>
+          <a href="#paso6" class="btn-siguiente" onclick="irAlPaso(event, 'paso6')">Siguiente paso: Cambia contraseñas y cierra sesiones →</a>
         </div>
       </div>
     </div>
@@ -1349,6 +1393,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso6', this)">☐ Marcar como hecho</button>
+          <a href="#paso7" class="btn-siguiente" onclick="irAlPaso(event, 'paso7')">Siguiente paso: Cierra sesiones en transporte y delivery →</a>
         </div>
       </div>
     </div>
@@ -1401,6 +1446,7 @@
             </a>
           </div>
           <button class="btn-marcar" onclick="marcarHecho('paso7', this)">☐ Marcar como hecho</button>
+          <a href="#paso8" class="btn-siguiente" onclick="irAlPaso(event, 'paso8')">Siguiente paso: Recursos y trámites finales →</a>
         </div>
       </div>
     </div>
@@ -1577,6 +1623,23 @@
     }
     localStorage.setItem('pasosDone', JSON.stringify([...donePasos]));
     actualizarProgreso();
+
+    // Al completar un paso, avanza automáticamente al siguiente
+    if (isDone) {
+      const num = parseInt(pasoId.replace('paso', ''), 10);
+      const siguienteId = 'paso' + (num + 1);
+      const siguiente = document.getElementById(siguienteId);
+      if (siguiente) {
+        setTimeout(() => {
+          document.querySelectorAll('.paso.open').forEach(p => p.classList.remove('open'));
+          siguiente.classList.add('open');
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset')) || 152;
+          const top = siguiente.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+          history.pushState(null, '', '#' + siguienteId);
+        }, 450);
+      }
+    }
   }
 
   // Restaurar estado al cargar
@@ -1589,6 +1652,39 @@
     }
   });
   actualizarProgreso();
+
+  // ─── OFFSET STICKY (topbar + barra de progreso) ───
+  function actualizarStickyOffset() {
+    const topbar = document.querySelector('.topbar');
+    const progress = document.querySelector('.progress-section');
+    const h = (topbar ? topbar.offsetHeight : 0) + (progress ? progress.offsetHeight : 0) + 16;
+    document.documentElement.style.setProperty('--sticky-offset', h + 'px');
+  }
+  actualizarStickyOffset();
+  window.addEventListener('resize', actualizarStickyOffset);
+
+  // Si la URL llega con #pasoN (botón "Comenzar ahora", links externos, etc.)
+  // se abre ese paso. El scroll-margin-top en CSS ya corrige la posición.
+  if (location.hash) {
+    const destino = document.querySelector(location.hash);
+    if (destino && destino.classList.contains('paso')) {
+      destino.classList.add('open');
+    }
+  }
+
+  // ─── NAVEGACIÓN "SIGUIENTE PASO" ───
+  function irAlPaso(e, pasoId) {
+    e.preventDefault();
+    // Cierra todos los pasos abiertos
+    document.querySelectorAll('.paso.open').forEach(p => p.classList.remove('open'));
+    const destino = document.getElementById(pasoId);
+    if (!destino) return;
+    destino.classList.add('open');
+    const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset')) || 152;
+    const top = destino.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+    history.pushState(null, '', '#' + pasoId);
+  }
 
   // ─── ACCORDION ───
   function togglePaso(header) {
