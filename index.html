@@ -264,6 +264,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
+  body { overflow-anchor: none; }
 
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -1628,16 +1629,8 @@
     if (isDone) {
       const num = parseInt(pasoId.replace('paso', ''), 10);
       const siguienteId = 'paso' + (num + 1);
-      const siguiente = document.getElementById(siguienteId);
-      if (siguiente) {
-        setTimeout(() => {
-          document.querySelectorAll('.paso.open').forEach(p => p.classList.remove('open'));
-          siguiente.classList.add('open');
-          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset')) || 152;
-          const top = siguiente.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-          history.pushState(null, '', '#' + siguienteId);
-        }, 450);
+      if (document.getElementById(siguienteId)) {
+        setTimeout(() => avanzarAPaso(siguienteId), 300); // breve pausa para ver el ✓ antes de moverse
       }
     }
   }
@@ -1672,18 +1665,26 @@
     }
   }
 
-  // ─── NAVEGACIÓN "SIGUIENTE PASO" ───
-  function irAlPaso(e, pasoId) {
-    e.preventDefault();
-    // Cierra todos los pasos abiertos
-    document.querySelectorAll('.paso.open').forEach(p => p.classList.remove('open'));
-    const destino = document.getElementById(pasoId);
+  // ─── NAVEGACIÓN ENTRE PASOS (sin rebotes) ───
+  // No cerramos el paso anterior antes de movernos: si algo cambia de
+  // tamaño justo arriba mientras hacemos scroll, el navegador "compensa"
+  // solo (scroll anchoring) y pelea con nuestro scroll → se ve el rebote.
+  // Por eso solo abrimos el destino y nos movemos, sin tocar los demás.
+  function avanzarAPaso(targetId) {
+    const destino = document.getElementById(targetId);
     if (!destino) return;
     destino.classList.add('open');
-    const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset')) || 152;
-    const top = destino.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
-    history.pushState(null, '', '#' + pasoId);
+    requestAnimationFrame(() => {
+      const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset')) || 152;
+      const top = destino.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.pushState(null, '', '#' + targetId);
+    });
+  }
+
+  function irAlPaso(e, pasoId) {
+    e.preventDefault();
+    avanzarAPaso(pasoId);
   }
 
   // ─── ACCORDION ───
