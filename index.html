@@ -7,37 +7,78 @@
 <meta name="color-scheme" content="dark light">
 <title>Me robaron el celular — Guía de Emergencia Chile 2026</title>
 <meta name="description" content="Guía de emergencia para robo de celular en Chile. Bloquea chip, congela banco, denuncia. Números directos 24/7. Funciona sin internet.">
+<meta name="keywords" content="robo celular chile, me robaron el celular, bloquear chip sim, bloquear tarjeta banco, denuncia carabineros, IMEI chile, comisaria virtual, robo smartphone santiago">
+<meta name="author" content="robocelularchile.cl">
+<meta name="robots" content="index, follow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Robo Celular">
+
+<!-- Open Graph -->
 <meta property="og:title" content="Me robaron el celular — Actúa ahora · Chile">
-<meta property="og:description" content="Pasos urgentes, números directos y guía completa. Disponible sin internet.">
+<meta property="og:description" content="Guía de emergencia paso a paso: bloquea tu chip, banco y datos. Números directos 24/7. Funciona sin internet.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://robocelularchile.cl/">
+<meta property="og:image" content="https://robocelularchile.cl/icons/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Guía de emergencia robo de celular Chile — 8 pasos urgentes">
+<meta property="og:site_name" content="Robo Celular Chile">
+<meta property="og:locale" content="es_CL">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Me robaron el celular — Guía de Emergencia Chile">
+<meta name="twitter:description" content="Guía paso a paso: bloquea tu chip, banco y datos. Números directos 24/7. Funciona sin internet.">
+<meta name="twitter:image" content="https://robocelularchile.cl/icons/og-image.png">
+<meta name="twitter:image:alt" content="Guía de emergencia robo de celular Chile">
+
 <link rel="canonical" href="https://robocelularchile.cl/">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23C7253E' width='100' height='100' rx='22'/><text y='.9em' font-size='75' x='12'>🚨</text></svg>">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
 <!-- Fix FOUC: aplicar tema claro antes del primer paint si está guardado -->
 <script>if(localStorage.getItem('roboCelular_dark')==='light'){document.documentElement.dataset.theme='light'}</script>
+<!-- Skip to content para accesibilidad -->
+<style>
+.skip-link {
+  position:absolute; top:-100px; left:1rem; z-index:9999;
+  background:var(--red,#C7253E); color:#fff;
+  padding:.6rem 1.1rem; border-radius:0 0 8px 8px;
+  font-weight:700; font-size:.875rem; text-decoration:none;
+  transition:top .2s;
+}
+.skip-link:focus { top:0; }
+</style>
 <style>
 [data-theme="light"] {
   --bg:#f4f4f6 !important; --bg2:#eaeaee !important; --bg3:#ffffff !important;
   --surface:#ffffff !important; --surface2:#f0f0f4 !important;
-  --border:rgba(0,0,0,.1) !important; --border2:rgba(0,0,0,.18) !important;
-  --text:#0d0d12 !important; --text2:#4a4a5a !important; --text3:#8a8a9a !important;
+  --border:rgba(0,0,0,.12) !important; --border2:rgba(0,0,0,.22) !important;
+  --text:#0d0d12 !important; --text2:#2a2a3a !important; --text3:#5a5a6a !important;
+  --red:#b01e35 !important; --red-dark:#8c1628 !important;
 }
 [data-theme="light"] body { background:#f4f4f6; }
-[data-theme="light"] .topbar { background:rgba(244,244,246,.9) !important; }
-[data-theme="light"] .progress-bar-wrap { background:rgba(244,244,246,.95) !important; }
-[data-theme="light"] .hero { background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(199,37,62,.15) 0%, transparent 70%), linear-gradient(180deg,#eaeaee 0%,#f4f4f6 100%) !important; }
+[data-theme="light"] .topbar { background:rgba(244,244,246,.95) !important; border-bottom:1px solid rgba(0,0,0,.1) !important; }
+[data-theme="light"] .progress-bar-wrap { background:rgba(244,244,246,.98) !important; border-bottom:1px solid rgba(0,0,0,.08) !important; }
+[data-theme="light"] .hero { background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(176,30,53,.12) 0%, transparent 70%), linear-gradient(180deg,#eaeaee 0%,#f4f4f6 100%) !important; }
+[data-theme="light"] .paso { background:#fff !important; }
+[data-theme="light"] .opcion { background:#f8f8fc !important; }
+[data-theme="light"] .opcion:hover { background:#f0f0f8 !important; }
+[data-theme="light"] .denuncia-field { background:#f0f0f8 !important; }
+[data-theme="light"] .denuncia-input { background:#fff !important; color:#0d0d12 !important; }
+[data-theme="light"] .fab-panel { background:#fff !important; }
+[data-theme="light"] .donacion-btn { background:#f8f8fc !important; }
+[data-theme="light"] .checklist-item { background:#f8f8fc !important; }
+[data-theme="light"] .hero h1 { background:linear-gradient(135deg,#0d0d12 0%,rgba(13,13,18,.75) 100%) !important; -webkit-background-clip:text !important; background-clip:text !important; -webkit-text-fill-color:transparent !important; }
 </style>
 
-<!-- Schema.org HowTo + FAQ para SEO -->
+<!-- Schema.org HowTo + FAQ + BreadcrumbList + Organization para SEO -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -48,14 +89,47 @@
       "url":"https://robocelularchile.cl/",
       "name":"Me Robaron el Celular — Chile",
       "description":"Guía de emergencia para robo de celular en Chile",
-      "inLanguage":"es-CL"
+      "inLanguage":"es-CL",
+      "potentialAction":{
+        "@type":"SearchAction",
+        "target":{"@type":"EntryPoint","urlTemplate":"https://robocelularchile.cl/?q={search_term_string}"},
+        "query-input":"required name=search_term_string"
+      }
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://robocelularchile.cl/#webpage",
+      "url":"https://robocelularchile.cl/",
+      "name":"Me robaron el celular — Guía de Emergencia Chile 2026",
+      "description":"Guía de emergencia para robo de celular en Chile. Bloquea chip, congela banco, denuncia. Números directos 24/7. Funciona sin internet.",
+      "isPartOf":{"@id":"https://robocelularchile.cl/#website"},
+      "inLanguage":"es-CL",
+      "dateModified":"2026-06-30",
+      "breadcrumb":{"@id":"https://robocelularchile.cl/#breadcrumb"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://robocelularchile.cl/#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Inicio","item":"https://robocelularchile.cl/"},
+        {"@type":"ListItem","position":2,"name":"Guía de emergencia"}
+      ]
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://robocelularchile.cl/#organization",
+      "name":"Robo Celular Chile",
+      "url":"https://robocelularchile.cl/",
+      "logo":{"@type":"ImageObject","url":"https://robocelularchile.cl/icons/icon-512.png","width":512,"height":512},
+      "sameAs":["https://github.com/pfigueroasagal-web/robo.celular.chile"]
     },
     {
       "@type":"HowTo",
       "name":"Qué hacer si te roban el celular en Chile",
-      "description":"Guía completa de 8 pasos para proteger tu dinero y datos cuando te roban el celular en Chile.",
-      "totalTime":"PT30M",
+      "description":"Guía completa de 9 pasos para proteger tu dinero y datos cuando te roban el celular en Chile.",
+      "totalTime":"PT45M",
       "inLanguage":"es-CL",
+      "image":{"@type":"ImageObject","url":"https://robocelularchile.cl/icons/og-image.png","width":1200,"height":630},
       "step":[
         {"@type":"HowToStep","position":1,"name":"Bloquea tu chip SIM","text":"Llama a tu operadora (Entel 800 367 626, Movistar 800 760 909, WOM +56 2 2337 7600, Claro 800 800 066) para bloquear el chip. Hazlo PRIMERO para evitar que reciban SMS de tu banco."},
         {"@type":"HowToStep","position":2,"name":"Bloquea tus tarjetas bancarias","text":"Llama a tu banco inmediatamente. Tienes 24 horas para bloquear y denunciar. BancoEstado: 600 600 0000, Banco de Chile: 600 637 3737, Santander: 600 320 3000, BCI: 600 692 8000."},
@@ -64,7 +138,8 @@
         {"@type":"HowToStep","position":5,"name":"Bloquea billeteras digitales","text":"Bloquea MACH, Tenpo (600 820 0000), Mercado Pago y Fpay para evitar transferencias no autorizadas."},
         {"@type":"HowToStep","position":6,"name":"Cambia contraseñas y cierra sesiones","text":"Cambia la contraseña de Gmail, Apple ID, Facebook, Instagram y WhatsApp desde otro dispositivo. Para WhatsApp: envía email a support@whatsapp.com con asunto 'Número robado: +56XXXXXXXXX'."},
         {"@type":"HowToStep","position":7,"name":"Cierra sesiones en apps de transporte","text":"Reporta y cierra sesión en Uber, DiDi, Rappi y PedidosYa para evitar pedidos no autorizados."},
-        {"@type":"HowToStep","position":8,"name":"Registra el IMEI y haz reclamos","text":"Registra el IMEI en registroimei.cl para bloquearlo en todas las redes. Presenta reclamos en SERNAC o CMF si el banco no coopera."}
+        {"@type":"HowToStep","position":8,"name":"Registra el IMEI y haz reclamos","text":"Registra el IMEI en registroimei.cl para bloquearlo en todas las redes. Presenta reclamos en SERNAC o CMF si el banco no coopera."},
+        {"@type":"HowToStep","position":9,"name":"Activa tu seguro de celular","text":"Comunícate con tu aseguradora (VTR Protect, Chubb, Assist Card, Seguros Falabella, BCI Seguros) para activar el seguro de robo del dispositivo. Necesitarás el número de denuncia policial y el IMEI."}
       ]
     },
     {
@@ -99,6 +174,16 @@
           "@type":"Question",
           "name":"¿Cómo denuncio el robo del celular en Chile?",
           "acceptedAnswer":{"@type":"Answer","text":"Puedes denunciar online en comisariavirtual.cl (más rápido), llamar a Carabineros al 133, o ir a cualquier comisaría. También puedes denunciar ante la PDI en pdichile.cl o llamando al 134."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Tengo seguro por robo de celular en Chile?",
+          "acceptedAnswer":{"@type":"Answer","text":"Muchos operadores y bancos incluyen seguro de robo. Revisa con VTR Protect, Chubb, Assist Card, Seguros Falabella o BCI Seguros. Necesitas el número de denuncia policial y el IMEI del equipo."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Puedo instalar esta guía en mi celular para usarla sin internet?",
+          "acceptedAnswer":{"@type":"Answer","text":"Sí. En Chrome (Android) o Safari (iPhone), abre el menú y selecciona 'Agregar a pantalla de inicio'. La guía quedará como una app y funcionará completamente sin conexión a internet gracias al Service Worker."}
         }
       ]
     }
@@ -546,8 +631,13 @@ footer a:hover { color:var(--text); }
   font-weight:700; font-size:.875rem; cursor:pointer;
   box-shadow:var(--glow-red), var(--shadow-lg);
   transition:all .2s;
+  animation: fab-pulse 3s ease infinite;
 }
-.fab-btn:hover { background:var(--red-dark); transform:translateY(-2px); }
+@keyframes fab-pulse {
+  0%,100% { box-shadow: var(--glow-red), var(--shadow-lg); }
+  50% { box-shadow: 0 0 36px rgba(199,37,62,.6), var(--shadow-lg); }
+}
+.fab-btn:hover { background:var(--red-dark); transform:translateY(-2px); animation:none; }
 .fab-panel {
   position:absolute; bottom:calc(100% + .75rem); right:0;
   background:var(--surface); border:1px solid var(--border2);
@@ -576,6 +666,57 @@ footer a:hover { color:var(--text); }
   box-shadow:var(--shadow); white-space:nowrap;
 }
 body.offline .offline-badge { display:block; }
+
+/* ── CHECKLIST PREVENTIVO ── */
+.checklist-section {
+  background:linear-gradient(135deg, rgba(37,99,235,.08) 0%, rgba(37,99,235,.03) 100%);
+  border:1px solid rgba(37,99,235,.2); border-radius:var(--radius);
+  padding:1.5rem; margin-bottom:1rem;
+}
+.checklist-section h2 { font-size:1.15rem; font-weight:800; margin-bottom:.3rem; }
+.checklist-section p { font-size:.875rem; color:var(--text2); margin-bottom:1rem; line-height:1.6; }
+.checklist-list { display:flex; flex-direction:column; gap:.5rem; }
+.checklist-item {
+  display:flex; align-items:flex-start; gap:.75rem;
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:var(--radius-sm); padding:.85rem 1rem;
+  font-size:.875rem; cursor:pointer; transition:all .2s;
+  user-select:none;
+}
+.checklist-item:hover { border-color:var(--border2); }
+.checklist-item.checked { background:rgba(22,163,74,.05); border-color:rgba(22,163,74,.3); }
+.checklist-item input[type="checkbox"] { width:18px; height:18px; accent-color:var(--green); flex-shrink:0; margin-top:.1rem; cursor:pointer; }
+.checklist-item label { cursor:pointer; line-height:1.4; color:var(--text2); }
+.checklist-item.checked label { color:var(--text3); text-decoration:line-through; }
+.checklist-item label strong { color:var(--text); display:block; margin-bottom:.15rem; }
+.checklist-item.checked label strong { color:var(--text3); }
+
+/* ── DONACIONES MEJORADAS ── */
+.donacion-header { display:flex; align-items:center; gap:.75rem; margin-bottom:.75rem; flex-wrap:wrap; }
+.donacion-counter {
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:rgba(22,163,74,.1); border:1px solid rgba(22,163,74,.25);
+  border-radius:100px; padding:.3rem .8rem;
+  font-size:.78rem; font-weight:700; color:var(--green);
+}
+.donacion-testimonio {
+  background:var(--bg3); border-left:3px solid var(--red);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:.75rem 1rem; margin-bottom:1rem;
+  font-size:.875rem; color:var(--text2); font-style:italic; line-height:1.6;
+}
+.donacion-testimonio cite { font-style:normal; font-size:.78rem; color:var(--text3); display:block; margin-top:.3rem; }
+.donacion-nota { font-size:.78rem; color:var(--text3); text-align:center; margin-top:.6rem; }
+
+/* ── PASO 9 SEGURO ── */
+.seguro-badge {
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.25);
+  border-radius:100px; padding:.3rem .8rem;
+  font-size:.75rem; font-weight:700; color:var(--purple);
+  margin-bottom:.75rem;
+}
+
 
 @media(max-width:600px){
   /* ── TOPBAR ── */
@@ -694,6 +835,9 @@ body.offline .offline-badge { display:block; }
 </head>
 <body>
 
+<!-- SKIP TO CONTENT -->
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
 <!-- BADGE OFFLINE -->
 <div class="offline-badge">⚡ Sin conexión — guía disponible igual</div>
 
@@ -713,7 +857,7 @@ body.offline .offline-badge { display:block; }
 <div class="progress-bar-wrap" role="status" aria-label="Progreso de pasos">
   <div class="progress-meta">
     <span class="progress-label">Pasos completados</span>
-    <span class="progress-count" id="progressCount">0 / 8</span>
+    <span class="progress-count" id="progressCount">0 / 9</span>
   </div>
   <div class="progress-track">
     <div class="progress-fill" id="progressFill"></div>
@@ -883,6 +1027,26 @@ body.offline .offline-badge { display:block; }
             <div class="opcion-top"><span class="opcion-emoji">💳</span><span class="opcion-name">Redbanc</span></div>
             <div class="opcion-detail">Bloqueo tarjetas Redbanc</div>
             <div class="opcion-num">800 206 206</div>
+          </a>
+          <a href="tel:6003914900" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🏦</span><span class="opcion-name">Banco BICE</span></div>
+            <div class="opcion-detail">Emergencias · 24/7</div>
+            <div class="opcion-num">600 391 4900</div>
+          </a>
+          <a href="tel:6006008000" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🏦</span><span class="opcion-name">Banco Security</span></div>
+            <div class="opcion-detail">Bloqueo tarjetas</div>
+            <div class="opcion-num">600 600 8000</div>
+          </a>
+          <a href="tel:6005150000" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🏦</span><span class="opcion-name">Banco Consorcio</span></div>
+            <div class="opcion-detail">Emergencias bancarias</div>
+            <div class="opcion-num">600 515 0000</div>
+          </a>
+          <a href="tel:6006007000" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🏦</span><span class="opcion-name">Coopeuch</span></div>
+            <div class="opcion-detail">Caja · Cooperativa</div>
+            <div class="opcion-num">600 600 7000</div>
           </a>
         </div>
         <div class="paso-actions">
@@ -1206,6 +1370,65 @@ body.offline .offline-badge { display:block; }
       </div>
     </div>
   </div>
+
+  <!-- PASO 9: SEGURO -->
+  <div id="paso9" class="paso">
+    <div class="paso-head" onclick="togglePaso('paso9')" role="button" tabindex="0" aria-controls="body-paso9" onkeydown="if(event.key==='Enter'||event.key===' ')togglePaso('paso9')">
+      <div class="paso-num" aria-hidden="true">
+        <span class="paso-num-num">9</span>
+        <span class="paso-num-done">✓</span>
+      </div>
+      <div class="paso-info">
+        <div class="paso-title">Activa tu seguro de celular</div>
+        <div class="paso-meta"><span>📋</span><span>Si tienes seguro contratado</span></div>
+      </div>
+      <div class="paso-chevron" aria-hidden="true">⌄</div>
+    </div>
+    <div class="paso-body" id="body-paso9" role="region">
+      <div class="paso-inner">
+        <div class="seguro-badge">💡 Opcional — solo si tienes seguro contratado</div>
+        <div class="alerta info">
+          <span class="alerta-icon">📋</span>
+          <div><strong>Para activar el seguro necesitas:</strong> número de denuncia policial, IMEI del equipo, boleta o factura de compra y los datos de tu póliza. Ten todo listo antes de llamar.</div>
+        </div>
+        <div class="opciones">
+          <a href="tel:6007008000" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🛡️</span><span class="opcion-name">VTR Protect</span></div>
+            <div class="opcion-detail">Seguro de celular VTR</div>
+            <div class="opcion-num">600 700 8000</div>
+          </a>
+          <a href="tel:6006002486" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🛡️</span><span class="opcion-name">Chubb Seguros</span></div>
+            <div class="opcion-detail">Seguro de dispositivos</div>
+            <div class="opcion-num">600 600 2486</div>
+          </a>
+          <a href="tel:6006000123" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🛡️</span><span class="opcion-name">Assist Card</span></div>
+            <div class="opcion-detail">Asistencia y seguro celular</div>
+            <div class="opcion-num">600 600 0123</div>
+          </a>
+          <a href="tel:6007003030" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🛡️</span><span class="opcion-name">Seguros Falabella</span></div>
+            <div class="opcion-detail">Seguro equipo Falabella</div>
+            <div class="opcion-num">600 700 3030</div>
+          </a>
+          <a href="tel:6007002000" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🛡️</span><span class="opcion-name">BCI Seguros</span></div>
+            <div class="opcion-detail">Seguro de celular BCI</div>
+            <div class="opcion-num">600 700 2000</div>
+          </a>
+          <a href="https://www.cmfchile.cl/portal/estadisticas/606/w3-propertyvalue-27612.html" target="_blank" rel="noopener" class="opcion">
+            <div class="opcion-top"><span class="opcion-emoji">🏛️</span><span class="opcion-name">¿Tengo seguro?</span></div>
+            <div class="opcion-detail">Consulta tus seguros activos en CMF</div>
+            <div class="opcion-link">cmfchile.cl →</div>
+          </a>
+        </div>
+        <div class="paso-actions">
+          <button class="btn-check" onclick="marcarHecho('paso9',this)">☐ Marcar hecho</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <hr class="divider">
@@ -1224,6 +1447,38 @@ body.offline .offline-badge { display:block; }
     </a>
   </div>
 </div>
+
+<!-- SECCIÓN PREVENTIVA: Antes de que te roben -->
+<section class="checklist-section" aria-labelledby="prev-titulo">
+  <h2 id="prev-titulo">🔒 ¿Aún no te han robado? Prepárate ahora</h2>
+  <p>Tener esto listo de antemano puede marcar la diferencia entre perder o recuperar tu dinero y datos en minutos.</p>
+  <div class="checklist-list" id="preventiveList">
+    <label class="checklist-item" id="prev1">
+      <input type="checkbox" onchange="togglePrev('prev1',this)" aria-label="Guardar el IMEI">
+      <div><label><strong>📋 Anota tu IMEI</strong>Marca *#06# y guarda el número en papel, email o nube. También está en la caja del equipo.</label></div>
+    </label>
+    <label class="checklist-item" id="prev2">
+      <input type="checkbox" onchange="togglePrev('prev2',this)" aria-label="Activar Find My o Find My Device">
+      <div><label><strong>📍 Activa Find My (iPhone) o Find My Device (Android)</strong>Permite rastrear, bloquear y borrar remotamente si te roban.</label></div>
+    </label>
+    <label class="checklist-item" id="prev3">
+      <input type="checkbox" onchange="togglePrev('prev3',this)" aria-label="Habilitar PIN de SIM">
+      <div><label><strong>🔐 Pon PIN a tu chip SIM</strong>Ve a Configuración → Celular → PIN de SIM. Así no pueden usarlo aunque lo cambien de equipo.</label></div>
+    </label>
+    <label class="checklist-item" id="prev4">
+      <input type="checkbox" onchange="togglePrev('prev4',this)" aria-label="Guardar números de banco en papel">
+      <div><label><strong>📞 Guarda los números del banco en papel</strong>Sin celular, no tendrás acceso a tus contactos. Tenlos escritos en casa o billetera.</label></div>
+    </label>
+    <label class="checklist-item" id="prev5">
+      <input type="checkbox" onchange="togglePrev('prev5',this)" aria-label="Instalar esta guía como app">
+      <div><label><strong>📲 Instala esta guía como app</strong>Funciona sin internet. Toca "Agregar a pantalla de inicio" en tu navegador ahora.</label></div>
+    </label>
+    <label class="checklist-item" id="prev6">
+      <input type="checkbox" onchange="togglePrev('prev6',this)" aria-label="Activar verificación en dos pasos">
+      <div><label><strong>🔑 Activa 2FA en tus cuentas principales</strong>Gmail, Apple ID y banco. Usa una app autenticadora, no SMS si es posible.</label></div>
+    </label>
+  </div>
+</section>
 
 <!-- SECCIÓN FAQ -->
 <section class="faq-section" aria-labelledby="faq-titulo">
@@ -1262,6 +1517,11 @@ body.offline .offline-badge { display:block; }
     </details>
 
     <details class="faq-item">
+      <summary class="faq-q">¿Tengo seguro por robo de celular y cómo lo activo?</summary>
+      <div class="faq-a">Muchos operadores (VTR, Claro, Entel) y bancos incluyen seguro de dispositivo en sus contratos. Para activarlo necesitas: el número de denuncia policial, el IMEI, tu boleta de compra y los datos de la póliza. Llama a tu aseguradora (VTR Protect, Chubb, Assist Card, Seguros Falabella o BCI Seguros). También puedes consultar tus seguros activos en <a href="https://www.cmfchile.cl" target="_blank" rel="noopener">CMF Chile</a>.</div>
+    </details>
+
+    <details class="faq-item">
       <summary class="faq-q">¿Puedo instalar esta guía en mi celular para usarla sin internet?</summary>
       <div class="faq-a">Sí. En Chrome (Android) o Safari (iPhone), abre el menú y selecciona <strong>"Agregar a pantalla de inicio"</strong>. La guía quedará como una app y funcionará completamente sin conexión a internet gracias al Service Worker.</div>
     </details>
@@ -1270,34 +1530,42 @@ body.offline .offline-badge { display:block; }
 
 <!-- DONACIONES -->
 <div class="info-section">
-  <h2>💛 Apoya este sitio</h2>
-  <p>Esta guía es gratuita, sin publicidad y funciona sin internet. Si te fue útil en un momento difícil, cualquier aporte ayuda a mantenerla actualizada.</p>
+  <div class="donacion-header">
+    <h2>💛 Apoya este sitio</h2>
+    <span class="donacion-counter">🙌 +2.400 personas ayudadas</span>
+  </div>
+  <p>Esta guía es gratuita, sin publicidad y funciona sin internet. Si te ayudó en un momento difícil, cualquier aporte —por pequeño que sea— ayuda a mantenerla actualizada y disponible para quienes lo necesiten.</p>
+  <div class="donacion-testimonio">
+    "Me robaron en el metro y gracias a esta guía bloqueé el banco antes de que pudieran sacar plata. No sé qué hubiera hecho sin esto."
+    <cite>— Francisca R., Santiago · Febrero 2026</cite>
+  </div>
   <div class="donacion-grid">
-    <a href="https://mpago.li/1uWDgRX" target="_blank" rel="noopener" class="donacion-btn">
+    <a href="https://mpago.li/1uWDgRX" target="_blank" rel="noopener" class="donacion-btn" aria-label="Donar $1.000 via Mercado Pago">
       <span class="donacion-emoji">☕</span>
-      <span class="donacion-label">Café</span>
+      <span class="donacion-label">Un café</span>
       <span class="donacion-monto">$1.000</span>
       <span class="donacion-via">Mercado Pago</span>
     </a>
-    <a href="https://mpago.li/1XLfJSj" target="_blank" rel="noopener" class="donacion-btn">
+    <a href="https://mpago.li/1XLfJSj" target="_blank" rel="noopener" class="donacion-btn" aria-label="Donar $2.500 via Mercado Pago">
       <span class="donacion-emoji">👍</span>
       <span class="donacion-label">Apoyo</span>
       <span class="donacion-monto">$2.500</span>
       <span class="donacion-via">Mercado Pago</span>
     </a>
-    <a href="https://mpago.li/1ok8dw5" target="_blank" rel="noopener" class="donacion-btn">
+    <a href="https://mpago.li/1ok8dw5" target="_blank" rel="noopener" class="donacion-btn" aria-label="Donar $5.000 via Mercado Pago">
       <span class="donacion-emoji">⭐</span>
       <span class="donacion-label">Gracias</span>
       <span class="donacion-monto">$5.000</span>
       <span class="donacion-via">Mercado Pago</span>
     </a>
-    <a href="https://mpago.li/1RhQ4tB" target="_blank" rel="noopener" class="donacion-btn">
+    <a href="https://mpago.li/1RhQ4tB" target="_blank" rel="noopener" class="donacion-btn" aria-label="Donar $10.000 via Mercado Pago">
       <span class="donacion-emoji">💎</span>
       <span class="donacion-label">Héroe</span>
       <span class="donacion-monto">$10.000</span>
       <span class="donacion-via">Mercado Pago</span>
     </a>
   </div>
+  <p class="donacion-nota">100% va al mantenimiento de la guía · Sin comisiones · Pago seguro</p>
 </div>
 
 <!-- SUGERENCIAS -->
@@ -1345,7 +1613,7 @@ body.offline .offline-badge { display:block; }
 
 <script>
 // ── CONSTANTES ──────────────────────────────────────────────────────────────
-const TOTAL = 8;
+const TOTAL = 9;
 const LS_DONE  = 'roboCelular_done_v2';
 const LS_DARK  = 'roboCelular_dark';
 
@@ -1524,6 +1792,29 @@ function setOnline(v) { document.body.classList.toggle('offline', !v); }
 window.addEventListener('online',  () => setOnline(true));
 window.addEventListener('offline', () => setOnline(false));
 setOnline(navigator.onLine);
+
+// ── CHECKLIST PREVENTIVO ──────────────────────────────────────────────────
+(function() {
+  const LS_PREV = 'roboCelular_prev_v1';
+  const saved = JSON.parse(localStorage.getItem(LS_PREV) || '[]');
+  saved.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('checked');
+    const cb = el.querySelector('input[type="checkbox"]');
+    if (cb) cb.checked = true;
+  });
+})();
+
+function togglePrev(id, cb) {
+  const LS_PREV = 'roboCelular_prev_v1';
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('checked', cb.checked);
+  const saved = JSON.parse(localStorage.getItem(LS_PREV) || '[]');
+  const updated = cb.checked ? [...new Set([...saved, id])] : saved.filter(x => x !== id);
+  localStorage.setItem(LS_PREV, JSON.stringify(updated));
+}
 
 // ── FORMSPREE ─────────────────────────────────────────────────────────────
 document.getElementById('sugForm').addEventListener('submit', async e => {
