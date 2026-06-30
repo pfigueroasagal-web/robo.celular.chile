@@ -22,6 +22,93 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
+<!-- Fix FOUC: aplicar tema claro antes del primer paint si está guardado -->
+<script>if(localStorage.getItem('roboCelular_dark')==='light'){document.documentElement.dataset.theme='light'}</script>
+<style>
+[data-theme="light"] {
+  --bg:#f4f4f6 !important; --bg2:#eaeaee !important; --bg3:#ffffff !important;
+  --surface:#ffffff !important; --surface2:#f0f0f4 !important;
+  --border:rgba(0,0,0,.1) !important; --border2:rgba(0,0,0,.18) !important;
+  --text:#0d0d12 !important; --text2:#4a4a5a !important; --text3:#8a8a9a !important;
+}
+[data-theme="light"] body { background:#f4f4f6; }
+[data-theme="light"] .topbar { background:rgba(244,244,246,.9) !important; }
+[data-theme="light"] .progress-bar-wrap { background:rgba(244,244,246,.95) !important; }
+[data-theme="light"] .hero { background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(199,37,62,.15) 0%, transparent 70%), linear-gradient(180deg,#eaeaee 0%,#f4f4f6 100%) !important; }
+</style>
+
+<!-- Schema.org HowTo + FAQ para SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://robocelularchile.cl/#website",
+      "url":"https://robocelularchile.cl/",
+      "name":"Me Robaron el Celular — Chile",
+      "description":"Guía de emergencia para robo de celular en Chile",
+      "inLanguage":"es-CL"
+    },
+    {
+      "@type":"HowTo",
+      "name":"Qué hacer si te roban el celular en Chile",
+      "description":"Guía completa de 8 pasos para proteger tu dinero y datos cuando te roban el celular en Chile.",
+      "totalTime":"PT30M",
+      "inLanguage":"es-CL",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Bloquea tu chip SIM","text":"Llama a tu operadora (Entel 800 367 626, Movistar 800 760 909, WOM +56 2 2337 7600, Claro 800 800 066) para bloquear el chip. Hazlo PRIMERO para evitar que reciban SMS de tu banco."},
+        {"@type":"HowToStep","position":2,"name":"Bloquea tus tarjetas bancarias","text":"Llama a tu banco inmediatamente. Tienes 24 horas para bloquear y denunciar. BancoEstado: 600 600 0000, Banco de Chile: 600 637 3737, Santander: 600 320 3000, BCI: 600 692 8000."},
+        {"@type":"HowToStep","position":3,"name":"Haz la denuncia policial","text":"Denuncia en comisariavirtual.cl o llama al 133 (Carabineros) o 134 (PDI). Guarda el número de denuncia para presentarlo al banco."},
+        {"@type":"HowToStep","position":4,"name":"Rastrea o borra el dispositivo","text":"Usa findmy.apple.com (iPhone) o android.com/find (Android) para rastrear, bloquear en modo perdido o borrar datos remotamente."},
+        {"@type":"HowToStep","position":5,"name":"Bloquea billeteras digitales","text":"Bloquea MACH, Tenpo (600 820 0000), Mercado Pago y Fpay para evitar transferencias no autorizadas."},
+        {"@type":"HowToStep","position":6,"name":"Cambia contraseñas y cierra sesiones","text":"Cambia la contraseña de Gmail, Apple ID, Facebook, Instagram y WhatsApp desde otro dispositivo. Para WhatsApp: envía email a support@whatsapp.com con asunto 'Número robado: +56XXXXXXXXX'."},
+        {"@type":"HowToStep","position":7,"name":"Cierra sesiones en apps de transporte","text":"Reporta y cierra sesión en Uber, DiDi, Rappi y PedidosYa para evitar pedidos no autorizados."},
+        {"@type":"HowToStep","position":8,"name":"Registra el IMEI y haz reclamos","text":"Registra el IMEI en registroimei.cl para bloquearlo en todas las redes. Presenta reclamos en SERNAC o CMF si el banco no coopera."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"¿Qué hago primero si me roban el celular en Chile?",
+          "acceptedAnswer":{"@type":"Answer","text":"Actúa en este orden: 1) Bloquea el chip SIM llamando a tu operadora. 2) Bloquea tus tarjetas bancarias. 3) Haz la denuncia en Carabineros (133) o en comisariavirtual.cl. Estos pasos son críticos en los primeros 5-10 minutos."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Cuáles son los números para bloquear el chip SIM en Chile?",
+          "acceptedAnswer":{"@type":"Answer","text":"Entel: 800 367 626 | Movistar: 800 760 909 | WOM: +56 2 2337 7600 | Claro: 800 800 066. Todos disponibles 24/7 y de forma gratuita."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Cuánto tiempo tengo para bloquear mi banco después del robo?",
+          "acceptedAnswer":{"@type":"Answer","text":"Tienes 24 horas desde el robo para bloquear tus tarjetas y hacer la denuncia policial. Después de ese plazo el banco puede rechazar la devolución de cargos fraudulentos."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Cómo desactivo mi cuenta de WhatsApp si me robaron el celular?",
+          "acceptedAnswer":{"@type":"Answer","text":"Envía un email a support@whatsapp.com con el asunto exacto: 'Número robado: +56XXXXXXXXX' (con tu número). WhatsApp desactivará la cuenta. Si tienes acceso a otro dispositivo, activa WhatsApp con tu número para desloguear el equipo robado."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Qué es el IMEI y cómo lo reporto?",
+          "acceptedAnswer":{"@type":"Answer","text":"El IMEI es el número único de 15 dígitos de tu celular. Lo encuentras marcando *#06# en cualquier teléfono, en la caja original o en el boleto de compra. Repórtalo en registroimei.cl para bloquearlo en todas las redes de Chile."}
+        },
+        {
+          "@type":"Question",
+          "name":"¿Cómo denuncio el robo del celular en Chile?",
+          "acceptedAnswer":{"@type":"Answer","text":"Puedes denunciar online en comisariavirtual.cl (más rápido), llamar a Carabineros al 133, o ir a cualquier comisaría. También puedes denunciar ante la PDI en pdichile.cl o llamando al 134."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Vercel Web Analytics -->
+<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+
 <style>
 :root {
   --red:       #C7253E;
@@ -166,6 +253,14 @@ body {
   transition:all .2s;
 }
 .btn-secondary:hover { border-color:rgba(255,255,255,.3); background:var(--surface2); }
+.btn-whatsapp-hero {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:#25D366; color:#fff;
+  padding:.85rem 1.25rem; border-radius:var(--radius-sm);
+  font-weight:700; font-size:.9rem; text-decoration:none;
+  border:none; cursor:pointer; transition:all .2s;
+}
+.btn-whatsapp-hero:hover { background:#1ebe5d; transform:translateY(-1px); }
 
 /* ── INSTALL BANNER ── */
 #installBanner {
@@ -318,6 +413,28 @@ main { max-width:720px; margin:0 auto; padding:1.5rem 1.25rem 4rem; }
 /* ── SEPARADOR ── */
 .divider { border:none; height:1px; background:var(--border); margin:2rem 0; }
 
+/* ── CAMPO NÚMERO DE DENUNCIA ── */
+.denuncia-field {
+  background:var(--bg3); border:1px solid rgba(199,37,62,.3);
+  border-radius:var(--radius-sm); padding:1rem; margin-bottom:1.1rem;
+}
+.denuncia-label { display:block; font-size:.8rem; font-weight:700; color:var(--text2); margin-bottom:.6rem; }
+.denuncia-row { display:flex; gap:.5rem; }
+.denuncia-input {
+  flex:1; background:var(--surface); border:1px solid var(--border2); color:var(--text);
+  font-family:'JetBrains Mono',monospace; font-size:1rem; font-weight:700;
+  padding:.65rem .85rem; border-radius:var(--radius-sm); transition:border-color .2s;
+}
+.denuncia-input:focus { outline:none; border-color:var(--red); box-shadow:0 0 0 3px var(--red-dim); }
+.denuncia-input::placeholder { font-family:'Inter',sans-serif; font-weight:400; color:var(--text3); }
+.denuncia-copiar {
+  background:var(--surface2); border:1px solid var(--border2); color:var(--text2);
+  padding:.65rem 1rem; border-radius:var(--radius-sm); font-size:.82rem; font-weight:700;
+  cursor:pointer; transition:all .2s; white-space:nowrap;
+}
+.denuncia-copiar:hover { background:var(--red-dim); border-color:var(--red); color:var(--red); }
+.denuncia-hint { font-size:.75rem; color:var(--green); margin-top:.4rem; }
+
 /* ── SECCIÓN INFORMATIVA ── */
 .info-section {
   background:var(--surface); border:1px solid var(--border);
@@ -362,6 +479,55 @@ main { max-width:720px; margin:0 auto; padding:1.5rem 1.25rem 4rem; }
   border-radius:var(--radius-sm); padding:1rem; text-align:center;
   color:var(--green); font-weight:600; font-size:.9rem;
 }
+
+/* ── BANNER COMPLETADO ── */
+#completado-banner {
+  background:linear-gradient(135deg, rgba(22,163,74,.15) 0%, rgba(22,163,74,.06) 100%);
+  border:1px solid rgba(22,163,74,.35);
+  border-radius:var(--radius); padding:1.5rem; margin-bottom:1rem;
+}
+.completado-inner { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.completado-icon { font-size:2.5rem; flex-shrink:0; }
+.completado-texto { flex:1; min-width:200px; }
+.completado-texto strong { display:block; font-size:1.05rem; color:var(--green); margin-bottom:.25rem; }
+.completado-texto span { font-size:.875rem; color:var(--text2); }
+.completado-wsp {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:#25D366; color:#fff; text-decoration:none;
+  padding:.7rem 1.1rem; border-radius:var(--radius-sm);
+  font-weight:700; font-size:.85rem; white-space:nowrap; transition:all .2s;
+}
+.completado-wsp:hover { background:#1ebe5d; transform:translateY(-1px); }
+
+/* ── FAQ ── */
+.faq-section {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.5rem; margin-bottom:1rem;
+}
+.faq-section h2 { font-size:1.15rem; font-weight:800; margin-bottom:.25rem; }
+.faq-sub { font-size:.85rem; color:var(--text2); margin-bottom:1.1rem; }
+.faq-list { display:flex; flex-direction:column; gap:.5rem; }
+.faq-item {
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:var(--radius-sm); overflow:hidden; transition:border-color .2s;
+}
+.faq-item[open] { border-color:rgba(199,37,62,.3); }
+.faq-q {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.85rem 1rem; cursor:pointer; list-style:none;
+  font-size:.9rem; font-weight:700; color:var(--text2);
+  transition:color .2s; user-select:none;
+}
+.faq-q::-webkit-details-marker { display:none; }
+.faq-q::after { content:'⌄'; font-size:1rem; color:var(--text3); transition:transform .25s; flex-shrink:0; }
+.faq-item[open] .faq-q::after { transform:rotate(180deg); }
+.faq-item[open] .faq-q { color:var(--text); }
+.faq-a {
+  padding:.85rem 1rem 1rem; border-top:1px solid var(--border);
+  font-size:.875rem; color:var(--text2); line-height:1.65;
+}
+.faq-a a { color:var(--red); }
+.faq-a strong { color:var(--text); }
 
 /* ── FOOTER ── */
 footer {
@@ -483,6 +649,10 @@ body.offline .offline-badge { display:block; }
       <button class="btn-secondary" onclick="document.getElementById('sosPanel').classList.toggle('open')">
         📞 Números rápidos
       </button>
+      <a href="https://wa.me/?text=%C2%BFTe%20robaron%20el%20celular%3F%20Sigue%20esta%20gu%C3%ADa%20paso%20a%20paso%20para%20proteger%20tu%20dinero%20y%20datos%20en%20Chile%3A%20https%3A%2F%2Frobocelularchile.cl" target="_blank" rel="noopener" class="btn-whatsapp-hero" aria-label="Compartir guía por WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+        Compartir guía
+      </a>
     </div>
   </div>
 </header>
@@ -633,6 +803,15 @@ body.offline .offline-badge { display:block; }
         <div class="alerta info">
           <span class="alerta-icon">📄</span>
           <div><strong>Guarda el número de denuncia</strong> — es obligatorio para objetar cargos al banco, reclamar al seguro y gestionar el IMEI.</div>
+        </div>
+        <!-- Campo para guardar número de denuncia -->
+        <div class="denuncia-field">
+          <label for="numeroDenuncia" class="denuncia-label">📋 Anota aquí tu número de denuncia (se guarda en este dispositivo)</label>
+          <div class="denuncia-row">
+            <input type="text" id="numeroDenuncia" class="denuncia-input" placeholder="Ej: 1234567890-K" aria-label="Número de denuncia policial" autocomplete="off" inputmode="text">
+            <button class="denuncia-copiar" onclick="copiarDenuncia()" aria-label="Copiar número de denuncia">Copiar</button>
+          </div>
+          <div class="denuncia-hint" id="denunciaHint" style="display:none">✓ Guardado — disponible aunque recargues la página</div>
         </div>
         <div class="opciones">
           <a href="https://comisariavirtual.cl" target="_blank" rel="noopener" class="opcion">
@@ -798,8 +977,8 @@ body.offline .offline-badge { display:block; }
           </a>
           <a href="https://faq.whatsapp.com/general/account-and-profile/stolen-accounts" target="_blank" rel="noopener" class="opcion">
             <div class="opcion-top"><span class="opcion-emoji">💬</span><span class="opcion-name">WhatsApp</span></div>
-            <div class="opcion-detail">Desactivar cuenta robada</div>
-            <div class="opcion-link">whatsapp.com →</div>
+            <div class="opcion-detail">Envía email a support@whatsapp.com con asunto: <strong style="color:var(--text)">"Número robado: +56XXXXXXXX"</strong> — desactivan la cuenta en minutos</div>
+            <div class="opcion-link">whatsapp.com/support →</div>
           </a>
           <a href="https://x.com/settings/password" target="_blank" rel="noopener" class="opcion">
             <div class="opcion-top"><span class="opcion-emoji">𝕏</span><span class="opcion-name">X (Twitter)</span></div>
@@ -926,6 +1105,64 @@ body.offline .offline-badge { display:block; }
 
 <hr class="divider">
 
+<!-- BANNER COMPLETADO 8/8 -->
+<div id="completado-banner" style="display:none">
+  <div class="completado-inner">
+    <div class="completado-icon">🎉</div>
+    <div class="completado-texto">
+      <strong>¡Completaste todos los pasos!</strong>
+      <span>Hiciste todo lo que podías para proteger tu dinero y datos. Guarda esta guía por si la necesitas de nuevo.</span>
+    </div>
+    <a href="https://wa.me/?text=%C2%BFTe%20robaron%20el%20celular%3F%20Sigue%20esta%20gu%C3%ADa%20paso%20a%20paso%20para%20proteger%20tu%20dinero%20y%20datos%20en%20Chile%3A%20https%3A%2F%2Frobocelularchile.cl" target="_blank" rel="noopener" class="completado-wsp">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.054 23.5l5.849-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.813 9.813 0 01-5.001-1.371l-.359-.214-3.722.976.993-3.628-.234-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+      Compartir guía por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- SECCIÓN FAQ -->
+<section class="faq-section" aria-labelledby="faq-titulo">
+  <h2 id="faq-titulo">Preguntas frecuentes</h2>
+  <p class="faq-sub">Las dudas más comunes cuando roban un celular en Chile</p>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary class="faq-q">¿Qué hago primero si me roban el celular?</summary>
+      <div class="faq-a">Actúa en este orden: <strong>1)</strong> Bloquea el chip SIM llamando a tu operadora. <strong>2)</strong> Bloquea tus tarjetas bancarias. <strong>3)</strong> Haz la denuncia en <a href="https://comisariavirtual.cl" target="_blank" rel="noopener">comisariavirtual.cl</a> o llamando al 133. Estos pasos son críticos en los primeros 5 minutos.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">¿Cuánto tiempo tengo para bloquear el banco?</summary>
+      <div class="faq-a">Tienes <strong>24 horas</strong> desde el momento del robo para bloquear tus tarjetas y presentar la denuncia policial. Pasado ese plazo, el banco puede rechazar la devolución de cargos fraudulentos según la Circular CMF N°17.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">¿Cómo desactivo mi WhatsApp si me robaron el celular?</summary>
+      <div class="faq-a">Envía un email a <strong>support@whatsapp.com</strong> con el asunto exacto: <em>"Número robado: +56XXXXXXXX"</em> (reemplaza con tu número). WhatsApp desactivará la cuenta en minutos. Alternativamente, instala WhatsApp en otro dispositivo con tu número para desloguear el equipo robado automáticamente.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">¿Qué es el IMEI y dónde lo encuentro?</summary>
+      <div class="faq-a">El IMEI es el número único de 15 dígitos de tu celular. Puedes encontrarlo en: la caja original del equipo, el boleto o factura de compra, o en iCloud / Google (si tenías respaldo activo). Con el IMEI puedes bloquearlo en todas las redes en <a href="https://www.registroimei.cl" target="_blank" rel="noopener">registroimei.cl</a>.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">¿Puedo recuperar el celular robado?</summary>
+      <div class="faq-a">Es difícil pero posible. Haz la denuncia policial con el IMEI incluido. Usa <strong>Find My</strong> (iPhone) o <strong>Find My Device</strong> (Android) para ver la ubicación mientras el equipo esté encendido. Si el ladrón lo prende, Carabineros puede actuar con la denuncia en mano.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">¿El banco me devuelve la plata si me robaron el celular?</summary>
+      <div class="faq-a">Sí, si actuaste a tiempo. Debes: bloquear las tarjetas y hacer la denuncia policial dentro de las 24 horas. Presenta el número de denuncia al banco para objetar los cargos. Si el banco se niega, puedes reclamar ante el <a href="https://www.sernac.cl" target="_blank" rel="noopener">SERNAC</a> o la <a href="https://www.cmfchile.cl" target="_blank" rel="noopener">CMF</a>.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">¿Puedo instalar esta guía en mi celular para usarla sin internet?</summary>
+      <div class="faq-a">Sí. En Chrome (Android) o Safari (iPhone), abre el menú y selecciona <strong>"Agregar a pantalla de inicio"</strong>. La guía quedará como una app y funcionará completamente sin conexión a internet gracias al Service Worker.</div>
+    </details>
+  </div>
+</section>
+
 <!-- DONACIONES -->
 <div class="info-section">
   <h2>💛 Apoya este sitio</h2>
@@ -1013,66 +1250,52 @@ let done = new Set(JSON.parse(localStorage.getItem(LS_DONE) || '[]'));
 // ── TEMA (oscuro por defecto) ────────────────────────────────────────────────
 (function() {
   const saved = localStorage.getItem(LS_DARK);
-  // Por defecto oscuro (ya están los CSS vars en :root dark)
-  if (saved === 'light') applyLight();
+  const btn = document.getElementById('btnDark');
+  if (document.documentElement.dataset.theme === 'light') {
+    btn.textContent = '🌙';
+  }
 
-  document.getElementById('btnDark').addEventListener('click', () => {
-    if (document.documentElement.dataset.theme === 'light') {
-      applyDark();
+  btn.addEventListener('click', () => {
+    const isLight = document.documentElement.dataset.theme === 'light';
+    if (isLight) {
+      delete document.documentElement.dataset.theme;
+      btn.textContent = '☀️';
+      localStorage.setItem(LS_DARK, 'dark');
     } else {
-      applyLight();
+      document.documentElement.dataset.theme = 'light';
+      btn.textContent = '🌙';
+      localStorage.setItem(LS_DARK, 'light');
     }
   });
-
-  function applyLight() {
-    document.documentElement.dataset.theme = 'light';
-    document.getElementById('btnDark').textContent = '🌙';
-    localStorage.setItem(LS_DARK, 'light');
-    injectLightTheme();
-  }
-  function applyDark() {
-    document.documentElement.dataset.theme = 'dark';
-    document.getElementById('btnDark').textContent = '☀️';
-    localStorage.setItem(LS_DARK, 'dark');
-    const el = document.getElementById('lightThemeStyle');
-    if (el) el.remove();
-  }
-  function injectLightTheme() {
-    if (document.getElementById('lightThemeStyle')) return;
-    const s = document.createElement('style');
-    s.id = 'lightThemeStyle';
-    s.textContent = `
-      :root {
-        --bg:#f4f4f6; --bg2:#eaeaee; --bg3:#fff;
-        --surface:#fff; --surface2:#f0f0f4;
-        --border:rgba(0,0,0,.1); --border2:rgba(0,0,0,.18);
-        --text:#0d0d12; --text2:#4a4a5a; --text3:#8a8a9a;
-      }
-      body { background:var(--bg); }
-      .topbar { background:rgba(244,244,246,.9); }
-      .progress-bar-wrap { background:rgba(244,244,246,.95); }
-    `;
-    document.head.appendChild(s);
-  }
 })();
 
-// ── TIMER ─────────────────────────────────────────────────────────────────
-let secs = 0;
+// ── TIMER PERSISTENTE ─────────────────────────────────────────────────────
 const disp = document.getElementById('timerDisplay');
-setInterval(() => {
-  secs++;
-  const m = String(Math.floor(secs/60)).padStart(2,'0');
-  const s = String(secs%60).padStart(2,'0');
-  disp.textContent = m+':'+s;
-  disp.classList.toggle('warn',  secs >= 300 && secs < 600);
-  disp.classList.toggle('alert', secs >= 600);
-}, 1000);
+const timerKey = 'roboCelular_timerStart';
+// Guardar hora de inicio la primera vez que se abre
+if (!localStorage.getItem(timerKey)) {
+  localStorage.setItem(timerKey, Date.now());
+}
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - parseInt(localStorage.getItem(timerKey))) / 1000);
+  const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const s = String(elapsed % 60).padStart(2, '0');
+  disp.textContent = m + ':' + s;
+  disp.classList.toggle('warn',  elapsed >= 300 && elapsed < 600);
+  disp.classList.toggle('alert', elapsed >= 600);
+}
+updateTimer();
+setInterval(updateTimer, 1000);
 
-// ── PROGRESO ─────────────────────────────────────────────────────────────
+// ── PROGRESO + MENSAJE COMPLETADO ────────────────────────────────────────
 function updateProgress() {
   const n = done.size;
-  document.getElementById('progressCount').textContent = n+' / '+TOTAL;
-  document.getElementById('progressFill').style.width = (n/TOTAL*100)+'%';
+  document.getElementById('progressCount').textContent = n + ' / ' + TOTAL;
+  document.getElementById('progressFill').style.width = (n / TOTAL * 100) + '%';
+  if (n === TOTAL) {
+    document.getElementById('completado-banner').style.display = 'flex';
+    document.getElementById('completado-banner').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
 
 // ── MARCAR HECHO ─────────────────────────────────────────────────────────
@@ -1140,8 +1363,38 @@ document.addEventListener('click', e => {
   }
 });
 
-// ── BOTÓN EMPEZAR ─────────────────────────────────────────────────────────
-document.getElementById('btnEmpezar').addEventListener('click', e => {
+// ── NÚMERO DE DENUNCIA — guardar en localStorage ──────────────────────────
+(function() {
+  const inp = document.getElementById('numeroDenuncia');
+  const hint = document.getElementById('denunciaHint');
+  if (!inp) return;
+  // Restaurar si existe
+  const saved = localStorage.getItem('roboCelular_denuncia');
+  if (saved) { inp.value = saved; hint.style.display = 'block'; }
+  inp.addEventListener('input', () => {
+    localStorage.setItem('roboCelular_denuncia', inp.value);
+    hint.style.display = inp.value ? 'block' : 'none';
+  });
+})();
+
+function copiarDenuncia() {
+  const val = document.getElementById('numeroDenuncia').value.trim();
+  if (!val) return;
+  const btn = document.querySelector('.denuncia-copiar');
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(val).then(() => {
+      btn.textContent = '✓ Copiado';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = val; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    btn.textContent = '✓ Copiado';
+    setTimeout(() => btn.textContent = 'Copiar', 2000);
+  }
+}
   e.preventDefault();
   irAPaso('paso1');
 });
