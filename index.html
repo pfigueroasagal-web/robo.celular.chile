@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://robocelularchile.cl/icons/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Guía de emergencia robo de celular Chile — 8 pasos urgentes">
+<meta property="og:image:alt" content="Guía de emergencia robo de celular Chile — 9 pasos urgentes">
 <meta property="og:site_name" content="Robo Celular Chile">
 <meta property="og:locale" content="es_CL">
 
@@ -1366,6 +1366,7 @@ body.offline .offline-badge { display:block; }
         </div>
         <div class="paso-actions">
           <button class="btn-check" onclick="marcarHecho('paso8',this)">☐ Marcar hecho</button>
+          <button class="btn-next" onclick="irAPaso('paso9')">Siguiente →</button>
         </div>
       </div>
     </div>
@@ -1433,7 +1434,7 @@ body.offline .offline-badge { display:block; }
 
 <hr class="divider">
 
-<!-- BANNER COMPLETADO 8/8 -->
+<!-- BANNER COMPLETADO 9/9 -->
 <div id="completado-banner" style="display:none">
   <div class="completado-inner">
     <div class="completado-icon">🎉</div>
@@ -1453,30 +1454,30 @@ body.offline .offline-badge { display:block; }
   <h2 id="prev-titulo">🔒 ¿Aún no te han robado? Prepárate ahora</h2>
   <p>Tener esto listo de antemano puede marcar la diferencia entre perder o recuperar tu dinero y datos en minutos.</p>
   <div class="checklist-list" id="preventiveList">
-    <label class="checklist-item" id="prev1">
-      <input type="checkbox" onchange="togglePrev('prev1',this)" aria-label="Guardar el IMEI">
-      <div><label><strong>📋 Anota tu IMEI</strong>Marca *#06# y guarda el número en papel, email o nube. También está en la caja del equipo.</label></div>
-    </label>
-    <label class="checklist-item" id="prev2">
-      <input type="checkbox" onchange="togglePrev('prev2',this)" aria-label="Activar Find My o Find My Device">
-      <div><label><strong>📍 Activa Find My (iPhone) o Find My Device (Android)</strong>Permite rastrear, bloquear y borrar remotamente si te roban.</label></div>
-    </label>
-    <label class="checklist-item" id="prev3">
-      <input type="checkbox" onchange="togglePrev('prev3',this)" aria-label="Habilitar PIN de SIM">
-      <div><label><strong>🔐 Pon PIN a tu chip SIM</strong>Ve a Configuración → Celular → PIN de SIM. Así no pueden usarlo aunque lo cambien de equipo.</label></div>
-    </label>
-    <label class="checklist-item" id="prev4">
-      <input type="checkbox" onchange="togglePrev('prev4',this)" aria-label="Guardar números de banco en papel">
-      <div><label><strong>📞 Guarda los números del banco en papel</strong>Sin celular, no tendrás acceso a tus contactos. Tenlos escritos en casa o billetera.</label></div>
-    </label>
-    <label class="checklist-item" id="prev5">
-      <input type="checkbox" onchange="togglePrev('prev5',this)" aria-label="Instalar esta guía como app">
-      <div><label><strong>📲 Instala esta guía como app</strong>Funciona sin internet. Toca "Agregar a pantalla de inicio" en tu navegador ahora.</label></div>
-    </label>
-    <label class="checklist-item" id="prev6">
-      <input type="checkbox" onchange="togglePrev('prev6',this)" aria-label="Activar verificación en dos pasos">
-      <div><label><strong>🔑 Activa 2FA en tus cuentas principales</strong>Gmail, Apple ID y banco. Usa una app autenticadora, no SMS si es posible.</label></div>
-    </label>
+    <div class="checklist-item" id="prev1">
+      <input type="checkbox" id="chk1" onchange="togglePrev('prev1',this)">
+      <label for="chk1"><strong>📋 Anota tu IMEI</strong> Marca *#06# y guarda el número en papel, email o nube. También está en la caja del equipo.</label>
+    </div>
+    <div class="checklist-item" id="prev2">
+      <input type="checkbox" id="chk2" onchange="togglePrev('prev2',this)">
+      <label for="chk2"><strong>📍 Activa Find My (iPhone) o Find My Device (Android)</strong> Permite rastrear, bloquear y borrar remotamente si te roban.</label>
+    </div>
+    <div class="checklist-item" id="prev3">
+      <input type="checkbox" id="chk3" onchange="togglePrev('prev3',this)">
+      <label for="chk3"><strong>🔐 Pon PIN a tu chip SIM</strong> Ve a Configuración → Celular → PIN de SIM. Así no pueden usarlo aunque lo cambien de equipo.</label>
+    </div>
+    <div class="checklist-item" id="prev4">
+      <input type="checkbox" id="chk4" onchange="togglePrev('prev4',this)">
+      <label for="chk4"><strong>📞 Guarda los números del banco en papel</strong> Sin celular, no tendrás acceso a tus contactos. Tenlos escritos en casa o billetera.</label>
+    </div>
+    <div class="checklist-item" id="prev5">
+      <input type="checkbox" id="chk5" onchange="togglePrev('prev5',this)">
+      <label for="chk5"><strong>📲 Instala esta guía como app</strong> Funciona sin internet. Toca "Agregar a pantalla de inicio" en tu navegador ahora.</label>
+    </div>
+    <div class="checklist-item" id="prev6">
+      <input type="checkbox" id="chk6" onchange="togglePrev('prev6',this)">
+      <label for="chk6"><strong>🔑 Activa 2FA en tus cuentas principales</strong> Gmail, Apple ID y banco. Usa una app autenticadora, no SMS si es posible.</label>
+    </div>
   </div>
 </section>
 
