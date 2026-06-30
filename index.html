@@ -179,8 +179,7 @@ body {
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
   padding:.75rem 1.25rem;
-}
-.progress-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem; font-size:.78rem; }
+}.progress-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem; font-size:.78rem; }
 .progress-label { color:var(--text2); font-weight:500; }
 .progress-count { color:var(--red); font-weight:700; font-variant-numeric:tabular-nums; }
 .progress-track { height:4px; background:var(--surface2); border-radius:2px; overflow:hidden; }
@@ -578,11 +577,117 @@ footer a:hover { color:var(--text); }
 }
 body.offline .offline-badge { display:block; }
 
-@media(max-width:480px){
-  .hero { padding:2.5rem 1rem 2rem; }
-  main { padding:1.25rem 1rem 5rem; }
-  .paso-head { padding:.9rem 1rem; gap:.65rem; }
-  .paso-inner { padding:0 1rem 1rem; padding-top:.9rem; }
+@media(max-width:600px){
+  /* ── TOPBAR ── */
+  .topbar { padding:.6rem 1rem; }
+  .topbar-brand { font-size:.8rem; }
+  .btn-icon { padding:.4rem .5rem; font-size:.8rem; }
+  #btnInstall { display:none !important; } /* Ocultamos en mobile, solo usar banner */
+
+  /* ── BARRA PROGRESO ── */
+  .progress-bar-wrap { padding:.6rem 1rem; top:46px; }
+  .progress-meta { margin-bottom:.35rem; font-size:.72rem; }
+
+  /* ── HERO ── */
+  .hero { padding:2rem 1rem 1.75rem; }
+  .hero h1 { font-size:2rem; letter-spacing:-.025em; }
+  .hero-sub { font-size:.925rem; margin-bottom:1.25rem; }
+  .hero-tag { font-size:.68rem; padding:.25rem .65rem; }
+  .hero-timer { padding:.6rem 1rem; margin-bottom:1.5rem; }
+  .hero-timer-display { font-size:1.3rem; }
+  .hero-timer-label { font-size:.62rem; }
+
+  /* Hero CTA: columna en móvil */
+  .hero-cta { flex-direction:column; align-items:stretch; gap:.6rem; }
+  .btn-primary { justify-content:center; padding:.9rem 1.5rem; font-size:1rem; }
+  .btn-secondary { justify-content:center; padding:.8rem 1.25rem; font-size:.9rem; }
+  .btn-whatsapp-hero { justify-content:center; padding:.8rem 1.25rem; font-size:.9rem; }
+
+  /* ── BANNER INSTALL ── */
+  #installBanner { flex-direction:column; padding:.85rem 1rem; margin:.75rem .85rem 0; }
+  .install-actions { justify-content:stretch; }
+  .btn-install, .btn-dismiss { flex:1; text-align:center; padding:.6rem; }
+
+  /* ── MAIN ── */
+  main { padding:1rem .85rem 5rem; }
+
+  /* ── FASES ── */
+  .fase-label { font-size:.68rem; padding:.5rem .65rem; }
+
+  /* ── PASOS ── */
+  .paso-head { padding:.85rem 1rem; gap:.6rem; }
+  .paso-title { font-size:.925rem; }
+  .paso-meta { font-size:.72rem; gap:.5rem; }
+  .paso-num { width:28px; height:28px; font-size:.8rem; border-radius:6px; }
+  .paso-chevron { font-size:.9rem; }
+  .paso-inner { padding:0 .85rem .85rem; padding-top:.85rem; }
+
+  /* ── ALERTAS ── */
+  .alerta { font-size:.82rem; padding:.75rem .85rem; gap:.6rem; }
+  .alerta-icon { font-size:1rem; }
+
+  /* ── CAMPO DENUNCIA ── */
+  .denuncia-row { flex-direction:column; gap:.5rem; }
+  .denuncia-input { font-size:.95rem; }
+  .denuncia-copiar { width:100%; padding:.7rem; text-align:center; }
+
+  /* ── OPCIONES (2 columnas en móvil) ── */
+  .opciones { grid-template-columns:1fr 1fr; gap:.5rem; }
+  .opcion { padding:.7rem .65rem; }
+  .opcion-emoji { font-size:1.1rem; }
+  .opcion-name { font-size:.8rem; }
+  .opcion-detail { font-size:.7rem; padding-left:1.6rem; }
+  .opcion-num { font-size:.8rem; padding-left:1.6rem; }
+  .opcion-link { font-size:.7rem; padding-left:1.6rem; }
+
+  /* ── ACCIONES PASO ── */
+  .paso-actions { flex-direction:column; gap:.5rem; }
+  .btn-check, .btn-next { width:100%; justify-content:center; padding:.65rem 1rem; }
+
+  /* ── BANNER COMPLETADO ── */
+  .completado-inner { flex-direction:column; text-align:center; }
+  .completado-wsp { width:100%; justify-content:center; }
+
+  /* ── FAQ ── */
+  .faq-q { font-size:.85rem; padding:.75rem .85rem; }
+  .faq-a { font-size:.82rem; padding:.75rem .85rem .85rem; }
+
+  /* ── DONACIONES ── */
+  .donacion-grid { grid-template-columns:repeat(2,1fr); gap:.5rem; }
+  .donacion-btn { padding:.85rem .6rem; }
+  .donacion-emoji { font-size:1.3rem; }
+  .donacion-monto { font-size:.9rem; }
+
+  /* ── SECCIONES ── */
+  .info-section { padding:1.1rem; }
+  .info-section h2 { font-size:1rem; }
+  .faq-section { padding:1.1rem; }
+  .faq-section h2 { font-size:1rem; }
+  #completado-banner { padding:1.1rem; }
+
+  /* ── FAB ── */
+  .fab { bottom:1rem; right:.85rem; }
+  .fab-btn { padding:.7rem 1rem; font-size:.82rem; }
+  .fab-panel { min-width:calc(100vw - 1.7rem); right:0; max-width:380px; }
+  .fab-link { padding:.75rem 1rem; font-size:.82rem; }
+  .fab-link-num { font-size:.8rem; }
+
+  /* ── FORM ── */
+  .form-field { font-size:.875rem; padding:.7rem .85rem; }
+  .btn-submit { padding:.8rem; font-size:.9rem; }
+
+  /* ── FOOTER ── */
+  footer { padding:1.5rem 1rem; font-size:.75rem; }
+}
+
+/* Extra pequeño: iPhone SE, Galaxy A03 (320px) */
+@media(max-width:360px){
+  .hero h1 { font-size:1.7rem; }
+  .opciones { grid-template-columns:1fr; }
+  .donacion-grid { grid-template-columns:repeat(2,1fr); }
+  .hero-cta .btn-primary,
+  .hero-cta .btn-secondary,
+  .hero-cta .btn-whatsapp-hero { font-size:.875rem; padding:.8rem 1rem; }
 }
 </style>
 
@@ -1335,7 +1440,9 @@ function irAPaso(id) {
   if (!el) return;
   el.classList.add('open');
   el.setAttribute('aria-expanded','true');
-  const offset = 112;
+  const topbar   = document.querySelector('.topbar');
+  const progress = document.querySelector('.progress-bar-wrap');
+  const offset = (topbar?.offsetHeight || 52) + (progress?.offsetHeight || 60) + 8;
   const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
   window.scrollTo({ top, behavior:'smooth' });
   history.pushState(null,'','#'+id);
@@ -1395,9 +1502,22 @@ function copiarDenuncia() {
     setTimeout(() => btn.textContent = 'Copiar', 2000);
   }
 }
+
+// ── BOTÓN EMPEZAR ─────────────────────────────────────────────────────────
+document.getElementById('btnEmpezar').addEventListener('click', e => {
   e.preventDefault();
   irAPaso('paso1');
 });
+
+// ── STICKY OFFSET DINÁMICO (ajusta scroll-margin-top según alto del topbar) ──
+function actualizarOffset() {
+  const topbar   = document.querySelector('.topbar');
+  const progress = document.querySelector('.progress-bar-wrap');
+  const h = (topbar?.offsetHeight || 52) + (progress?.offsetHeight || 60) + 8;
+  document.querySelectorAll('.paso').forEach(p => p.style.scrollMarginTop = h + 'px');
+}
+actualizarOffset();
+window.addEventListener('resize', actualizarOffset);
 
 // ── OFFLINE DETECTION ─────────────────────────────────────────────────────
 function setOnline(v) { document.body.classList.toggle('offline', !v); }
